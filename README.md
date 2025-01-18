@@ -50,7 +50,7 @@ This stores a copy in the folder `git-police`. You can then navigate into it usi
 This project can be used easily via a tool known as Poetry. This allows you to easily reflect edits made in the original source code! To install `poetry`, you can also install it using `pip` by typing in the command as follows:
 
 ```bash
-$ pip install poetry
+pip install poetry
 ```
 
 Again, if you have any issues with `pip`, check out [here](#installing-from-pypi).
