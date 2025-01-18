@@ -9,5 +9,21 @@ class Repo(git.Repo):
         
         super().__init__(str(current_path))
     
-    def get_commit_files():
-        pass
+    def get_commit_files(self):
+        # Should inherit from git.Repo
+        changedFiles = [item.a_path for item in self.index.diff(None)]
+        return changedFiles
+    
+    def get_changes_as_text(self, files):
+        # Should inherit from git.Repo
+        changedFiles = self.get_commit_files()
+        changeText = ""
+
+        for file in changedFiles:
+            try:
+                f = open(file, "r")
+                changeText += file + "\n" + f.read()
+            except:
+                print(f"failed to read File: {file}")
+
+        return changeText
