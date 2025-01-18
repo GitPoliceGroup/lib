@@ -5,7 +5,7 @@ from git_police.tasks.core import Task, TaskOutput
 class CodingTipGenerator(Task):
     def __init__(self):
         super().__init__("CodingTipGenerator", "Im here to give you coding tips!")
-        self.file = "git/police/utils/coding_tips.txt"
+        self.file = "git_police/utils/coding_tips.txt"
 
     def generate(self):
         with open(self.file, 'r') as f:
