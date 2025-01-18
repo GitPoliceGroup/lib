@@ -4,7 +4,7 @@ from git.police.rules.haiku import HaikuRule
 from git.police.rules.quote import StarWarsRule
 
 __all__ = [
-    "rule",
+    "Rule", "RuleOutput",
     "check_cc",
     "check_haiku",
     "check_star_wars"
