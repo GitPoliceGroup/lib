@@ -2,112 +2,128 @@ import chess
 import pandas as pd
 import tkinter as tk
 from tkinter import ttk
+import chess.svg
+import io
+from cairosvg import svg2png
+from PIL import Image, ImageTk
+import time
 
 class ChessBoardWindow:
-    def __init__(self, board, moves):
-        self.board = board
-        self.moves = moves
-        self.current_move_index = 0
+    def __init__(self, data):
+        self.flag = False
+        self.data = data.sample().iloc[0]
+        self.board = chess.Board(self.data["FEN"])
+        self.moves = self.data["Moves"]
+        self.time_left = 90
+        self.start_time = time.time()
         self.window = tk.Tk()
         self.window.title("Chess Puzzle")
         
-        self.canvas = tk.Canvas(self.window, width=400, height=400)
-        self.canvas.pack(padx=10, pady=10)
+        # Center the window on the screen
+        window_width = 500
+        window_height = 600
+        screen_width = self.window.winfo_screenwidth()
+        screen_height = self.window.winfo_screenheight()
+        position_top = 0
+        position_right = int(screen_width / 2 - window_width / 2)
+        self.window.geometry(f'{window_width}x{window_height}+{position_right}+{position_top}')
         
-        self.status = ttk.Label(self.window, text="Enter your move:")
+        self.top_frame = ttk.Frame(self.window)
+        self.top_frame.pack(fill=tk.X, pady=5)
+                
+        self.timer_label = ttk.Label(self.top_frame, text=f"{self.time_left}", font=("Helvetica", 14))
+        self.timer_label.pack(side=tk.TOP, padx=10)
+        
+        self.board_image_label = ttk.Label(self.window)
+        self.board_image_label.pack(padx=10, pady=10)
+        
+        self.status = ttk.Label(self.window, text=self.data["Result"], font=("Helvetica", 14))
         self.status.pack(pady=5)
         
-        self.move_entry = ttk.Entry(self.window)
-        self.move_entry.pack(pady=5)
+        self.move_frame = ttk.Frame(self.window)
+        self.move_frame.pack(pady=5)
+        
+        self.move_entry = ttk.Entry(self.move_frame, font=("Helvetica", 14), width=20)
+        self.move_entry.pack(side=tk.LEFT, padx=5)
         self.move_entry.bind('<Return>', self.on_move_entered)
         
-        self.timer_label = ttk.Label(self.window, text="Time left: 30")
-        self.timer_label.pack(pady=5)
+        self.submit_button = ttk.Button(self.move_frame, text="Submit", command=self.on_move_entered)
+        self.submit_button.pack(side=tk.LEFT, padx=5)
+        
+        self.message_label = ttk.Label(self.window, text="Enter move of both sides", foreground="black", font=("Helvetica", 14))
+        self.message_label.pack(pady=5)
         
         self.update_board()
-        self.start_timer()
+        self.window.after(100, self.start_timer)  # Delay timer start
         self.window.protocol("WM_DELETE_WINDOW", self.prevent_close)
         self.window.mainloop()
+
+        return self.flag
     
     def update_board(self):
-        self.canvas.delete("all")
-        colors = ["#f0d9b5", "#b58863"]
-        for row in range(8):
-            for col in range(8):
-                color = colors[(row + col) % 2]
-                self.canvas.create_rectangle(col * 50, row * 50, (col + 1) * 50, (row + 1) * 50, fill=color)
-        
-        piece_symbols = {
-            'p': '♟', 'r': '♜', 'n': '♞', 'b': '♝', 'q': '♛', 'k': '♚',
-            'P': '♙', 'R': '♖', 'N': '♘', 'B': '♗', 'Q': '♕', 'K': '♔'
-        }
-        
-        for square in chess.SQUARES:
-            piece = self.board.piece_at(square)
-            if piece:
-                symbol = piece_symbols[piece.symbol()]
-                row, col = divmod(square, 8)
-                x = col * 50 + 25
-                y = (7 - row) * 50 + 25
-                self.canvas.create_text(x, y, text=symbol, font=("Arial", 32))
+        board_svg = chess.svg.board(self.board, coordinates=True)
+        png_data = svg2png(bytestring=board_svg.encode('utf-8'))
+        image_data = Image.open(io.BytesIO(png_data))
+        self.board_photo = ImageTk.PhotoImage(image_data)
+        self.board_image_label.config(image=self.board_photo)
     
-    def on_move_entered(self, event):
-        user_move = self.move_entry.get().strip().lower()
-        correct_move = self.moves[self.current_move_index].lower()
-        
-        if user_move == correct_move:
-            self.board.push_san(user_move)
-            self.update_board()
-            self.current_move_index += 1
-            if self.current_move_index >= len(self.moves):
-                self.status.config(text="Congratulations! You win!")
-                self.window.after(2000, self.window.destroy)
-            else:
-                self.status.config(text="Thinking...")
-                self.window.after(1000, self.make_computer_move)
+    def on_move_entered(self, event=None):
+        user_move = self.move_entry.get()
+        if user_move != "":
+            user_move = user_move.strip().lower().replace("/", " ").replace(";", " ").replace(",", " ")
         else:
             self.load_new_puzzle()
-    
-    def make_computer_move(self):
-        self.board.push_san(self.moves[self.current_move_index])
-        self.update_board()
-        self.current_move_index += 1
-        self.status.config(text="Enter your move:")
-        self.move_entry.config(state='normal')
-        self.move_entry.delete(0, tk.END)
-        self.start_timer()
+        print("Input:", user_move)
+        correct_move = self.moves.lower()
+        print("Ans:", correct_move)
+        
+        if user_move == correct_move:
+            self.message_label.config(text="Correct move!", foreground="green")
+            self.status.config(text="Congratulations! You win! Exiting in 2 seconds...")
+            self.flag = True
+            self.window.after(2000, self.window.destroy)
+        else:
+            self.message_label.config(text="Incorrect move. Loading new puzzle...", foreground="red")
+            self.window.after(2000, self.load_new_puzzle)
+
     
     def load_new_puzzle(self):
-        data = pd.read_csv("git_police/tasks/Chess/puzzle_database.csv")
-        random_puzzle = data.sample().iloc[0]
-        self.board = chess.Board(random_puzzle['FEN'])
-        self.moves = random_puzzle['Moves'].split()
-        self.current_move_index = 0
+        self.data = data.sample().iloc[0]
+        self.board = chess.Board(self.data["FEN"])
+        self.moves = self.data["Moves"]
+        self.time_left = 90
+        self.start_time = time.time()
+        print(self.moves)
         self.update_board()
-        self.status.config(text="Enter your move:")
+        self.status.config(text=self.data["Result"])
         self.move_entry.config(state='normal')
         self.move_entry.delete(0, tk.END)
-        self.start_timer()
+        self.message_label.config(text="Enter move of both sides", foreground="black")
+        self.start_time = time.time()
+        self.window.after(100, self.start_timer)  # Delay timer start
     
     def start_timer(self):
-        self.time_left = 30
+        self.start_time = time.time()
+        self.time_left = 90
         self.update_timer()
     
     def update_timer(self):
+        elapsed_time = int(time.time() - self.start_time)
+        self.time_left = max(90 - elapsed_time, 0)
+        self.timer_label.config(text=f"Time left: {self.time_left}")
+        
         if self.time_left > 0:
-            self.timer_label.config(text=f"Time left: {self.time_left}")
-            self.time_left -= 1
             self.window.after(1000, self.update_timer)
         else:
-            self.on_move_entered(None)
+            self.message_label.config(text="Time's up! Loading new puzzle...", foreground="red")
+            self.window.after(2000, self.load_new_puzzle)
     
     def prevent_close(self):
         pass
 
-data = pd.read_csv("git_police/tasks/Chess/puzzle_database.csv")
+data = pd.read_csv("./puzzle_database.csv")
+print(data.columns)  # Debugging line to print column names
 # Main loop to load and display puzzles
-while True:
-    random_puzzle = data.sample().iloc[0]
-    board = chess.Board(random_puzzle['FEN'])
-    moves = random_puzzle['Moves'].split()
-    ChessBoardWindow(board, moves)
+flag = False
+while not(flag):
+    flag = ChessBoardWindow(data)
