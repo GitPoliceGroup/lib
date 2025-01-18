@@ -24,7 +24,7 @@ packages = [
 "Bug Tracker" = "https://github.com/GitPoliceGroup/lib/issues"
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = ">=3.10,<3.12"
 typer = "^0.15.1"
 opencv-python = "^4.11.0.86"
 nltk = "^3.9.1"
@@ -36,6 +36,7 @@ sentencepiece = "^0.2.0"
 sacremoses = "^0.1.1"
 tf-keras = "^2.18.0"
 deepface = "^0.0.93"
+tensorflow-io-gcs-filesystem = "0.31.0"
 
 [tool.poetry.group.dev.dependencies]  
 pytest = "^7.4"  
