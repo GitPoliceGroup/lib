@@ -1,5 +1,7 @@
-from git.police.rules.haiku.haiku import *
+from git.police.rules.haiku import HaikuRule
 
-def check_haiku(string: str):
-    haikus = HaikuText(string).get_haikus()
-    return haikus
+def check_haiku(message: str):
+    rule = HaikuRule()
+    
+    result = rule(message)
+    return result
