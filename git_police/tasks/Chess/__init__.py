@@ -5,6 +5,12 @@ import random
 
 from git_police.tasks.core import Task, TaskOutput
 
+class ChessPuzzleTask(Task):
+    def __init__(self):
+        data = pd.read_csv("./puzzle_database.csv")
+        ChessBoardWindow(data)
+    return True
+
 # class ChessPuzzleTask(Task):
 #     def __init__(self):
 #         super().__init__(
