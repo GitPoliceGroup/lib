@@ -9,14 +9,18 @@ class HappinessChecker(Rule):
     def __call__(self) -> RuleOutput:
         from git_police.happiness.happiness import HappinessEnforcer
         # below is a list of Haiku objects
-        test = HappinessEnforcer()
-        while not test.emotion_analysis():
-            print("You need to be happy!")
-            
-        return RuleOutput(
-            success = True,
-            message = f"You are happy!"
-        )
+        print("Checking happiness...")
+        try:
+            test = HappinessEnforcer()
+            answer = test.emotion_analysis()
+                
+            # return RuleOutput(
+            #     success = True,
+            #     message = f"You are happy!"
+            # )
+            return True
+        except:
+            return False
     
 __all__ = [
     "HappinessChecker"

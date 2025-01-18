@@ -62,5 +62,6 @@ class HappinessEnforcer:
         cv2.destroyAllWindows()
         return happy
 
-test = HappinessEnforcer()
-test = test.emotion_analysis()
+if __name__ == "__main__":
+    test = HappinessEnforcer()
+    test = test.emotion_analysis()

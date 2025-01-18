@@ -24,7 +24,7 @@ from git_police.rules import (
 
 rule_list = {
     "haiku" : check_haiku,
-    "cc" : check_cc,
+    "conventional commits" : check_cc,
     "starwars" : check_star_wars,
     "palindrome" : check_palindrome,
     "alternator" : check_alternator,
@@ -109,7 +109,7 @@ def commit(
 
     # Skip_here added for testing purposes
 
-    skip_here = True
+    skip_here = False
 
     if(not skip_here):
         passed = False
@@ -136,7 +136,7 @@ def commit(
 
         print("Congrats! You have passed this part")
 
-    skip_here = True
+    skip_here = False
                 
     if(not skip_here):
         # Running Augmentors
@@ -151,7 +151,7 @@ def commit(
 
 
     skip_here = False
-    
+
     if(not skip_here):
     # Running Tasks
         for task in task_implemented:
@@ -162,6 +162,19 @@ def commit(
                 passed = task_list[task]()
 
     print("\nYou have passed all the tests! You may now commit!\n")
+
+    print("WAIT! You need to be happy to commit!")
+    # Count added for no camera folks
+    count = 0
+    happy = False
+    while(not happy and count < 3):
+        happy = HappinessChecker()()
+        count += 1
+
+    # HappinessChecker()()
+
+
+    print("You are happy to commit! Committing now...")
     # Construct git commit command
     git_command = ["git", "commit"]
     if message:

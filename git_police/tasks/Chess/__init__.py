@@ -2,14 +2,23 @@ import chess
 import pandas as pd
 import tkinter as tk
 import random
+from git_police.tasks.Chess.endgame import ChessBoardWindow
 
 from git_police.tasks.core import Task, TaskOutput
 
 class ChessPuzzleTask(Task):
     def __init__(self):
-        data = pd.read_csv("./puzzle_database.csv")
-        ChessBoardWindow(data)
-    return True
+        self.data = pd.read_csv("./puzzle_database.csv")
+
+    def __call__(self):
+        ChessBoardWindow(self.data)
+        return True
+
+if __name__ == "__main__":
+    print("Running ChessPuzzleTask...")
+    task = ChessPuzzleTask()
+    task()
+
 
 # class ChessPuzzleTask(Task):
 #     def __init__(self):
