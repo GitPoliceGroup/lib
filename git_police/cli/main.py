@@ -32,6 +32,7 @@ rule_list = {
 }
 # Add happiness checker
 from git_police.happiness import HappinessChecker
+
 # Add all background tasks
 from git_police.background import PublicShamingTask
 
@@ -39,13 +40,14 @@ background_list = {
     "public_shaming" : PublicShamingTask
 }
 # Add all tasks
-from git_police.tasks import (coding_tips, insultor, fake_error, trivia_generator)
+from git_police.tasks import (coding_tips, insultor, fake_error, trivia_generator, chess_puzzle)
 
 task_list = {
     "coding_tips" : coding_tips,
     "insultor" : insultor,
     "fake_error" : fake_error,
     "trivia_generator" : trivia_generator,
+    "chess" : chess_puzzle,
 }
 # Add all augmenters
 from git_police.augmenters import (AntonymAugmenter, DrunkTypingAugmenter, GermanAugmenter, PirateAugmenter, YodaSpeakAugmenter)
