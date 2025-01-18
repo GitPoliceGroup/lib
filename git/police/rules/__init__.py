@@ -1,12 +1,24 @@
+from git.police.rules.core import Rule, RuleOutput
 from git.police.rules.cc import CCRule
 from git.police.rules.haiku import HaikuRule
-from git.police.rules.quote import MovieRule
+from git.police.rules.starwars import StarWarsRule
+from git.police.rules.piglatin import PigLatinRule
+from git.police.rules.palindrome import PalindromeRule
+from git.police.rules.alternator import AlternatorRule
 
 __all__ = [
+    "Rule", "RuleOutput",
     "check_cc",
-    "check_haiku"
+    "check_haiku",
+    "check_star_wars",
+    "check_piglatin"
+    "check_palindrome",
+    "check_alternator"
 ]
 
 check_cc = CCRule()
 check_haiku = HaikuRule()
-check_movie_quote = MovieRule()
+check_star_wars = StarWarsRule()
+check_piglatin = PigLatinRule()
+check_palindrome = PalindromeRule()
+check_alternator = AlternatorRule()

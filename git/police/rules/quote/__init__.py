@@ -1,1 +1,0 @@
-from git.police.rules.quote.movie import *
