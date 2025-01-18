@@ -1,4 +1,6 @@
 import random
+import time
+from git.police.tasks.core import Task, TaskOutput
 
 class Trivia:
     def __init__(self):
@@ -134,6 +136,21 @@ class Trivia:
             except ValueError:
                 print("Invalid input. Please enter a number between 1 and 4.")
 
+        return True
 
-t = Trivia()
-t.generate()
+
+class CodingTipGenerator(Task):
+    def __init__(self):
+        super().__init__("CodingTipGenerator", "Im here to give you coding tips!")
+        self.file = "git/police/utils/coding_tips.txt"
+
+    def generate(self):
+        with open(self.file, 'r') as f:
+            tips = f.readlines()
+            random_tip = random.choice(tips)[:-2]
+            return random_tip
+        
+    def __call__(self):
+        trivia_agent = Trivia()
+
+        return trivia_agent.generate()
