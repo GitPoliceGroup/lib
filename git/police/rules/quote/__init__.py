@@ -4,18 +4,23 @@ from git.police.rules.quote.movie import *
 class MovieRule(Rule):
     def __init__(self):
         super().__init__("MovieQuoteChecker", "Commit Message should be a Quote from Star Wars!")
+        self.quotes = self.load_quotes()
+    
+    def load_quotes(self) -> List[str]:
+        with open("star_wars_quotes.json") as f:
+            quotes = json.load(f)
+        return quotes
     
     def __call__(self, message: str) -> RuleOutput:
-        # below is a list of Haiku objects
-        haikus = HaikuText(message).get_haikus()
+        quote = random.choice(self.quotes)
         
-        if len(haikus) > 0:
+        if quote in message:
             return RuleOutput(
                 success = True,
-                message = f"Found {len(haikus)} Haikus!"
+                message = f"Found the quote: {quote}"
             )
         
         return RuleOutput(
             success = False,
-            message = "You need to submit a Haiku to create a commit!"
-        )
+            message = f"Commit message needs to contain the quote: {quote}"
+       )
