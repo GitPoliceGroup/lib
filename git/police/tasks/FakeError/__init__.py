@@ -4,7 +4,7 @@ from git.police.tasks.core import Task, TaskOutput
 
 import csv, random
 
-class ScathingCommentGenerator:
+class FakeErrorGenerator:
     def __init__(self):
         self.file = "git/police/utils/scathing_code_reviews.csv"
 
@@ -15,10 +15,10 @@ class ScathingCommentGenerator:
             random_comment = random.choice(comments)
             return random_comment[0]
 
-class Insultor(Task):
+class FakeErrorGenerator(Task):
     def __init__(self):
-        super().__init__("Insultor", "I have to comment on your egregious code!")
-        self.scathing_comment_generator = ScathingCommentGenerator()
+        super().__init__("FakeErrorGenerator", "Fatal Error\n")
+        self.scathing_comment_generator = FakeErrorGenerator()
         
     def __call__(self):
         for i in range(10):
@@ -26,6 +26,3 @@ class Insultor(Task):
             print(self.scathing_comment_generator.generate())
 
         return True
-    
-i = Insultor()
-i()
