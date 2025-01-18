@@ -26,6 +26,7 @@ class Insultor(Task):
             print(self.scathing_comment_generator.generate())
 
         return True
-    
-i = Insultor()
-i()
+
+if __name__ == "__main__":
+    i = Insultor()
+    i()
