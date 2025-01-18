@@ -1,7 +1,7 @@
 from git.police.rules.core import Rule, RuleOutput
 from git.police.rules.cc import CCRule
 from git.police.rules.haiku import HaikuRule
-from git.police.rules.quote import StarWarsRule
+from git.police.rules.starwars import StarWarsRule
 
 __all__ = [
     "Rule", "RuleOutput",
