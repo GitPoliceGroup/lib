@@ -33,5 +33,5 @@ class StarWarsRule(Rule):
 
         return RuleOutput(
             success = False,
-            message = f"Commit message needs to contain a quote from Star Wars!"
+            message = f"Commit message needs to contain a quote from Star Wars! For example: \"{random.choice(self.quotes)}\""
        )
