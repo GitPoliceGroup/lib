@@ -27,6 +27,7 @@ packages = [
 python = "^3.10"
 typer = "^0.15.1"
 opencv-python = "^4.11.0.86"
+gitpython = "^3.1.44"
 haikus = {git = "https://github.com/wieden-kennedy/haikus", develop = true}
 nltk = "^3.9.1"
 
@@ -39,6 +40,9 @@ mypy = "*"
 ruff = "*"  
 isort = "*" 
 tox = "^4.15.0"
+
+[tool.poetry.scripts]
+git-police = "git.police.cli.main:app"
 
 [build-system]
 requires = ["poetry-core"]
