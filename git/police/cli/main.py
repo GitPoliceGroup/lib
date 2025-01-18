@@ -1,6 +1,7 @@
 import typer
 from git.police.cli.tools.hello import hello as commandhello
 from git.police.cli.tools.goodbye import goodbye as commandgoodbye
+from git.police.cli.utils.camera import start_camera
 from git.police.cli.tools.haiku import check_haiku as commandhaiku
 
 app = typer.Typer()
