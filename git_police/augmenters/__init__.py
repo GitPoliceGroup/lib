@@ -1,3 +1,5 @@
+# git_police/augmenters/__init__.py
+
 from git_police.augmenters.core import Augmenter
 
 from git_police.augmenters.antonym import AntonymAugmenter

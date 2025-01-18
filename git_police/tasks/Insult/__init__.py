@@ -6,7 +6,7 @@ import csv, random
 
 class ScathingCommentGenerator:
     def __init__(self):
-        self.file = "git/police/utils/scathing_code_reviews.csv"
+        self.file = "git_police/utils/scathing_code_reviews.csv"
 
     def generate(self):
         with open(self.file, 'r') as f:
@@ -21,11 +21,15 @@ class Insultor(Task):
         self.scathing_comment_generator = ScathingCommentGenerator()
         
     def __call__(self):
+        time.sleep(2)
+        print("\nWe ran your code through our code review tool and found the following issues:")
         for i in range(10):
             time.sleep(2)
+            print()
             print(self.scathing_comment_generator.generate())
 
         return True
-    
-i = Insultor()
-i()
+
+if __name__ == "__main__":
+    i = Insultor()
+    i()

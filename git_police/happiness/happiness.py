@@ -4,6 +4,7 @@ os.environ["CUDA_VISIBLE_DEVICES"] = "-1"  #
 from deepface import DeepFace
 import cv2
 import time
+from tqdm import tqdm
 
 # Add tf-keras THEN deepface
 
@@ -23,6 +24,8 @@ class HappinessEnforcer:
 
         happy = False
         count = 0
+        progress_bar = tqdm(total=100, desc="Happiness Count", unit="frames")
+
         while video.isOpened():
             _, frame = video.read()
             gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
@@ -37,7 +40,8 @@ class HappinessEnforcer:
                     # print(analyze['dominant_emotion'])
                     if analyze['dominant_emotion'] == 'happy':
                         happy = True
-                        break
+                    else:
+                        happy = False
                 except:
                     # print("No Face")
                     pass
@@ -49,11 +53,15 @@ class HappinessEnforcer:
 
             if happy:
                 count += 1
+                progress_bar.update(1)
 
-            if count >= 5:
+            if count >= 100:
                 break
 
         video.release()
         cv2.destroyAllWindows()
         return happy
 
+if __name__ == "__main__":
+    test = HappinessEnforcer()
+    test = test.emotion_analysis()

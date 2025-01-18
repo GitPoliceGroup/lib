@@ -5,7 +5,7 @@ from git_police.tasks.core import Task, TaskOutput
 class CodingTipGenerator(Task):
     def __init__(self):
         super().__init__("CodingTipGenerator", "Im here to give you coding tips!")
-        self.file = "git/police/utils/coding_tips.txt"
+        self.file = "git_police/utils/coding_tips.txt"
 
     def generate(self):
         with open(self.file, 'r') as f:
@@ -14,7 +14,10 @@ class CodingTipGenerator(Task):
             return random_tip
         
     def __call__(self):
+        print("After analyzing your staged commits, here are coding tips:")
+
         for i in range(10):
+            print()
             time.sleep(2)
             print(self.generate())
 
