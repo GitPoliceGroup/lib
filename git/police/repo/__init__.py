@@ -1,7 +1,7 @@
-import git
+from git import Repo as oldRepo
 from pathlib import Path
 
-class Repo(git.Repo):
+class Repo(oldRepo):
     def __init__(self, path: str):
         current_path = Path(path)
         while not (current_path / ".git").exists():
@@ -14,7 +14,7 @@ class Repo(git.Repo):
         changedFiles = [item.a_path for item in self.index.diff(None)]
         return changedFiles
     
-    def get_changes_as_text(self, files):
+    def get_changes_as_text(self):
         # Should inherit from git.Repo
         changedFiles = self.get_commit_files()
         changeText = ""
@@ -27,3 +27,7 @@ class Repo(git.Repo):
                 print(f"failed to read File: {file}")
 
         return changeText
+
+    def get_diffs_as_text(self):
+        diffs = self.git.diff('--cached')
+        return diffs

@@ -5,7 +5,7 @@ from git.police.rules.starwars import StarWarsRule
 from git.police.rules.piglatin import PigLatinRule
 from git.police.rules.palindrome import PalindromeRule
 from git.police.rules.alternator import AlternatorRule
-from git.police.rules.happiness import HappinessRule
+# from git.police.rules.happiness import HappinessRule
 
 __all__ = [
     "Rule", "RuleOutput",
@@ -24,4 +24,4 @@ check_star_wars = StarWarsRule()
 check_piglatin = PigLatinRule()
 check_palindrome = PalindromeRule()
 check_alternator = AlternatorRule()
-check_happiness = HappinessRule()
+# check_happiness = HappinessRule()

@@ -1,10 +1,10 @@
 import typer
 from git.police.rules import (
     Rule,
-    check_haiku, check_cc, check_star_wars, check_palindrome, check_alternator, check_piglatin, check_happiness
+    check_haiku, check_cc, check_star_wars, check_palindrome, check_alternator, check_piglatin, # check_happiness
 )
 from git.police.cli.utils.camera import start_camera
-import random
+import random, os
 
 app = typer.Typer()
 
@@ -15,7 +15,7 @@ methods: dict[str, Rule] = {
     "palindrome": check_palindrome,
     "alternator": check_alternator,
     "piglatin": check_piglatin,
-    "happiness": check_happiness
+    # "happiness": check_happiness
 }
 
 options = list(methods.keys())
@@ -112,6 +112,18 @@ def commit():
     print("\n\nPassed all rules! Congratulations!")
     
     # actually handle the commit
+
+@app.command()
+def complain():
+    msg = input("input commit message:")
+    
+    from git.police.repo import Repo
+    
+    repo = Repo(os.getcwd())
+    
+    from git.police.background.public_shaming import PublicShamingTask
+    task = PublicShamingTask()
+    task(msg, repo.get_changes_as_text(), repo.get_diffs_as_text())
 
 if __name__ == "__main__":
     app()

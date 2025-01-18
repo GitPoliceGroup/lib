@@ -5,7 +5,7 @@ class HappinessRule(Rule):
         super().__init__("HappinessChecker", "You need to be happy!")
     
     def __call__(self) -> RuleOutput:
-        from git.police.rules.happiness.happiness import HappinessEnforcer
+        from git.police.happiness.happiness import HappinessEnforcer
         # below is a list of Haiku objects
         test = HappinessEnforcer()
         while not test.emotion_analysis():
