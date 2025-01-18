@@ -30,6 +30,7 @@ opencv-python = "^4.11.0.86"
 gitpython = "^3.1.44"
 haikus = {git = "https://github.com/wieden-kennedy/haikus", develop = true}
 nltk = "^3.9.1"
+pydantic = "^2.10.5"
 
 [tool.poetry.group.dev.dependencies]  
 pytest = "^7.4"  
