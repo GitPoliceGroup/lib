@@ -5,7 +5,7 @@ defined criteria
 import nltk
 import string
 from nltk.corpus import cmudict
-from git.police.cli.utils.syllables_en import *
+from git.police.rules.haiku.syllables_en import *
 
 global WORD_DICT
 try:

@@ -1,17 +1,17 @@
 import typer
-from git.police.cli.tools.hello import hello as commandhello
-from git.police.cli.tools.goodbye import goodbye as commandgoodbye
-from git.police.cli.tools.haiku import check_haiku as commandhaiku
+from git.police.cli.tools.hello import hello
+from git.police.cli.tools.goodbye import goodbye
+from git.police.cli.tools.haiku import check_haiku
 
 app = typer.Typer()
 
 @app.command()
 def hello(name: str):
-    commandhello(name)
+    hello(name)
 
 @app.command()
 def goodbye(name: str, formal: bool = False):
-    commandgoodbye(name, formal)
+    goodbye(name, formal)
 
 @app.command()
 def start_cam():
@@ -19,8 +19,8 @@ def start_cam():
 
 @app.command()
 def haiku(haiku: str):
-    print(commandhaiku(haiku))
-    return commandhaiku(haiku)
+    print(check_haiku(haiku))
+    return check_haiku(haiku)
 
 if __name__ == "__main__":
     app()

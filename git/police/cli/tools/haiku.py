@@ -1,4 +1,4 @@
-from git.police.cli.utils.haiku import *
+from git.police.rules.haiku.haiku import *
 
 def check_haiku(string: str):
     haikus = HaikuText(string).get_haikus()
