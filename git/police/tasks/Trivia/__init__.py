@@ -139,17 +139,10 @@ class Trivia:
         return True
 
 
-class CodingTipGenerator(Task):
+class TriviaGenerator(Task):
     def __init__(self):
-        super().__init__("CodingTipGenerator", "Im here to give you coding tips!")
-        self.file = "git/police/utils/coding_tips.txt"
+        super().__init__("TriviaGenerator", "TRIVIA TIME!")
 
-    def generate(self):
-        with open(self.file, 'r') as f:
-            tips = f.readlines()
-            random_tip = random.choice(tips)[:-2]
-            return random_tip
-        
     def __call__(self):
         trivia_agent = Trivia()
 
