@@ -1,130 +1,124 @@
+print('running main.py')
+
 import typer
+import nltk
+import ssl
+ssl._create_default_https_context = ssl._create_unverified_context
+nltk.download('cmudict')
+
+# Add all augmenters
+from  git_police.augmenters import (AntonymAugmenter, DrunkTypingAugmenter, GermanAugmenter, PirateAugmenter, YodaSpeakAugmenter)
+
+# Add all rules
 from git_police.rules import (
     Rule,
-    check_haiku, check_cc, check_star_wars, check_palindrome, check_alternator, check_piglatin, # check_happiness
+    check_haiku, check_cc, check_star_wars, check_palindrome, check_alternator, check_piglatin,
 )
-from git_police.happiness import check_happiness
-from git_police.cli.utils.camera import start_camera
+
+rule_list = {
+    "haiku" : check_haiku,
+    "cc" : check_cc,
+    "starwars" : check_star_wars,
+    "palindrome" : check_palindrome,
+    "alternator" : check_alternator,
+    "piglatin" : check_piglatin,
+}
+
+# Add happiness checker
+from git_police.happiness import HappinessChecker
+
+# Add all background tasks
+from git_police.background import PublicShamingTask
+
+background_list = {
+    "public_shaming" : PublicShamingTask
+}
+
+# Add all tasks
+from git_police.tasks import (coding_tips, insultor, fake_error, trivia_generator)
+
+task_list = {
+    "coding_tips" : coding_tips,
+    "insultor" : insultor,
+    "fake_error" : fake_error,
+    "trivia_generator" : trivia_generator,
+}
+
+# Add all augmenters
+from git_police.augmenters import (AntonymAugmenter, DrunkTypingAugmenter, GermanAugmenter, PirateAugmenter, YodaSpeakAugmenter)
+augmenter_list = {
+    "antonym" : AntonymAugmenter,
+    "drunk_typing" : DrunkTypingAugmenter,
+    "german" : GermanAugmenter,
+    "pirate" : PirateAugmenter,
+    "yoda" : YodaSpeakAugmenter,
+}
+
 import random, os
 
 app = typer.Typer()
 
-methods: dict[str, Rule] = {
-    "haiku": check_haiku,
-    "cc": check_cc,
-    "starwars": check_star_wars,
-    "palindrome": check_palindrome,
-    "alternator": check_alternator,
-    "piglatin": check_piglatin,
-    # "happiness": check_happiness
-}
-
-options = list(methods.keys())
-
-@app.command()
-def start_cam():
-    start_camera()
-
-@app.command()
-def haiku():
-    message = input("Please enter your commit message: ")
-    while not (output := check_haiku(message)).success:
-        print("\n"+output.message)
-        message = input("Please enter a new commit message: ")
-    
-    print("\n\n"+output.message)
-
-@app.command()
-def cc():
-    message = input("Please enter your commit message: ")
-    while not (output := check_cc(message)).success:
-        print("\n"+output.message)
-        message = input("Please enter a new commit message: ")
-    
-    print("\n\n"+output.message)
-
-@app.command()
-def starwars():
-    message = input("Please enter your commit message: ")
-    while not (output := check_star_wars(message)).success:
-        print("\n"+output.message)
-        message = input("Please enter a new commit message: ")
-    
-    print("\n\n"+output.message)
-
-@app.command()
-def palindrome():
-    message = input("Please enter your commit message: ")
-    while not (output := check_palindrome(message)).success:
-        print("\n"+output.message)
-        message = input("Please enter a new commit message: ")
-    
-    print("\n\n"+output.message)
-
-@app.command()
-def piglatin():
-    message = input("Please enter your commit message: ")
-    while not (output := check_piglatin(message)).success:
-        print("\n"+output.message)
-        message = input("Please enter a new commit message: ")
-    
-    print("\n\n"+output.message)
-
-@app.command()
-def alternator():
-    message = input("Please enter your commit message: ")
-    while not (output := check_alternator(message)).success:
-        print("\n"+output.message)
-        message = input("Please enter a new commit message: ")
-    
-    print("\n\n"+output.message)
-
-@app.command()
-def happiness():
-    output = check_happiness()
-    print(output)
-    
-    print("\n\n"+output.message)
-
 @app.command()
 def commit():
-    print("Randomizing the rules to check for...")
-    random.shuffle(options)
+
+    print("Starting Commit")
+    # Rule Phase, change k for number of rules to implement
+    rule_options = list(rule_list.keys())
+    rules_implemented = random.choices(rule_options, k=4)
+
+    # Augmentation Phase
+    augmenter_options = list(augmenter_list.keys())
+    augmenters_implemented = random.choices(augmenter_options, k=1)
+
+    # Background Phase
+    background_options = list(background_list.keys())
+    background_implemented = random.choices(background_options, k=1)
+
+    # Task Phase
+    task_options = list(task_list.keys())
+    task_implemented = random.choices(task_options, k=1)
+
+    print(rules_implemented, augmenters_implemented, background_implemented, task_implemented)
+
+
+    # Rudimentary manager + flow
+    for background in background_implemented:
+        background_list[background]()
+
+    for rule in rules_implemented:
+        rule_list[rule]()
     
-    n_rules = random.randint(0, 4)
-    print("Identifying", n_rules, "rules...")
+    for augmenter in augmenters_implemented:
+        augmenter_list[augmenter]()
+
+    for task in task_implemented:
+        task_list[task]()
+
+
+    # Run the rules (Not edited)
     
-    rules = [methods[method] for method in options[:n_rules]]
+    # n_rules = random.randint(0, 4)
+    # print("Identifying", n_rules, "rules...")
     
-    print("Found", n_rules, "rules...\n")
+    # rules = [methods[method] for method in options[:n_rules]]
     
-    message = input("Please enter your commit message: ")
+    # print("Found", n_rules, "rules...\n")
     
-    for rule in rules:
-        print("Assessing your message against the", rule.name, "rule...")
-        while not (output := rule(message)).success:
-            print("\n"+output.message)
-            message = input("Please enter a new commit message: ")
+    # message = input("Please enter your commit message: ")
+    
+    # for rule in rules:
+    #     print("Assessing your message against the", rule.name, "rule...")
+    #     while not (output := rule(message)).success:
+    #         print("\n"+output.message)
+    #         message = input("Please enter a new commit message: ")
         
-        print("\n\n"+output.message)
-        print("Passed", rule.name, "successfully!\n\n")
+    #     print("\n\n"+output.message)
+    #     print("Passed", rule.name, "successfully!\n\n")
     
     
-    print("\n\nPassed all rules! Congratulations!")
+    # print("\n\nPassed all rules! Congratulations!")
     
     # actually handle the commit
-
-@app.command()
-def complain():
-    msg = input("input commit message:")
-    
-    from git_police.repo import Repo
-    
-    repo = Repo(os.getcwd())
-    
-    from git_police.background.PublicShaming.public_shaming import PublicShamingTask
-    task = PublicShamingTask()
-    task(msg, repo.get_changes_as_text(), repo.get_diffs_as_text())
 
 if __name__ == "__main__":
     app()

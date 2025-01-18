@@ -2,7 +2,7 @@
 
 from git_police.rules.core import Rule, RuleOutput
 
-class HappinessRule(Rule):
+class HappinessChecker(Rule):
     def __init__(self):
         super().__init__("HappinessChecker", "You need to be happy!")
     
@@ -17,3 +17,7 @@ class HappinessRule(Rule):
             success = True,
             message = f"You are happy!"
         )
+    
+__all__ = [
+    "HappinessChecker"
+]
