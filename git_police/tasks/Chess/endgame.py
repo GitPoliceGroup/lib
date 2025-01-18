@@ -56,7 +56,7 @@ class ChessBoardWindow:
         self.submit_button = ttk.Button(self.move_frame, text="Submit", command=self.on_move_entered)
         self.submit_button.pack(side=tk.LEFT, padx=5)
         
-        self.message_label = ttk.Label(self.window, text="Enter move of both sides", foreground="black", font=("Helvetica", 14))
+        self.message_label = ttk.Label(self.window, text="Your Turn to Move", foreground="black", font=("Helvetica", 14))
         self.message_label.pack(pady=5)
         
         self.update_board()
@@ -78,8 +78,9 @@ class ChessBoardWindow:
     def on_move_entered(self, event=None):
         try:
             user_move = self.move_entry.get().strip().lower().replace("k", "K").replace("q", "Q").replace("r", "R").replace("n", "N").replace("b", "B")
-            correct_move = self.moves.split()[self.move_count]
-            
+            print("User move", user_move)
+            correct_move = self.moves.split()[self.move_count-1]
+            print("Correct move", correct_move)
             # Parse moves directly - special characters handled automatically
             try:
                 if user_move == correct_move:
