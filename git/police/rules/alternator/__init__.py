@@ -6,7 +6,7 @@ class AlternatorRule(Rule):
         super().__init__("AlternatorChecker", "Commit Message should be with alternating uppercase and lowercase letters!")
     
     def __call__(self, message: str) -> RuleOutput:
-        message = re.sub(r'\s+', '', message)
+        message = re.sub(r'[^a-zA-Z]', '', message)
 
         for i in range(1, len(message)):
             if message[i].isupper() == message[i-1].isupper():
