@@ -22,6 +22,7 @@ class HappinessEnforcer:
             print("Could not open video device")
 
         happy = False
+        count = 0
         while video.isOpened():
             _, frame = video.read()
             gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
@@ -47,6 +48,9 @@ class HappinessEnforcer:
                 break
 
             if happy:
+                count += 1
+
+            if count >= 5:
                 break
 
         video.release()
