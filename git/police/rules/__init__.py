@@ -1,4 +1,4 @@
-from git.police.rules.conventional_commits import CCRule
+from git.police.rules.cc import CCRule
 from git.police.rules.haiku import HaikuRule
 from git.police.rules.quote import MovieRule
 
