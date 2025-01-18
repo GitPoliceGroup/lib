@@ -6,5 +6,5 @@ class Rule(ABC):
         self.description = description
         
     @abstractmethod
-    def __call__(self, message: str) -> tuple[boolean, str]:
+    def __call__(self, message: str) -> tuple[bool, str]:
         pass
