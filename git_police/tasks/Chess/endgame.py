@@ -18,6 +18,7 @@ class ChessBoardWindow:
         else:
             self.board.turn = chess.BLACK
         self.moves = self.data["Moves"]
+        print(self.moves)
         self.move_count = 0
         self.time_left = 90
         self.start_time = time.time()
@@ -113,10 +114,10 @@ class ChessBoardWindow:
         else:
             self.board.turn = chess.BLACK
         self.moves = self.data["Moves"]
+        print(self.moves)
         self.move_count = 0
         self.time_left = 90
         self.start_time = time.time()
-        print(self.moves)
         self.update_board()
         self.status.config(text=self.data["Result"])
         self.move_entry.config(state='normal')
