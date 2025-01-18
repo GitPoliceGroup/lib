@@ -1,7 +1,7 @@
 import typer
 from git.police.rules import (
     Rule,
-    check_haiku, check_cc, check_star_wars, check_palindrome
+    check_haiku, check_cc, check_star_wars, check_palindrome, check_alternator, check_piglatin, check_happiness
 )
 from git.police.cli.utils.camera import start_camera
 import random
@@ -13,6 +13,9 @@ methods: dict[str, Rule] = {
     "cc": check_cc,
     "starwars": check_star_wars,
     "palindrome": check_palindrome,
+    "alternator": check_alternator,
+    "piglatin": check_piglatin,
+    "happiness": check_happiness
 }
 
 options = list(methods.keys())
@@ -54,6 +57,31 @@ def palindrome():
     while not (output := check_palindrome(message)).success:
         print("\n"+output.message)
         message = input("Please enter a new commit message: ")
+    
+    print("\n\n"+output.message)
+
+@app.command()
+def piglatin():
+    message = input("Please enter your commit message: ")
+    while not (output := check_piglatin(message)).success:
+        print("\n"+output.message)
+        message = input("Please enter a new commit message: ")
+    
+    print("\n\n"+output.message)
+
+@app.command()
+def alternator():
+    message = input("Please enter your commit message: ")
+    while not (output := check_alternator(message)).success:
+        print("\n"+output.message)
+        message = input("Please enter a new commit message: ")
+    
+    print("\n\n"+output.message)
+
+@app.command()
+def happiness():
+    output = check_happiness()
+    print(output)
     
     print("\n\n"+output.message)
 
