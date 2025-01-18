@@ -22,7 +22,7 @@ $ pip install git-police
 Depending on the OS, you might need to use `pip3` instead. If the command is not found, you can choose to use the following command too:
 
 ```bash
-$ python -m pip install git-police
+python -m pip install git-police
 ```
 
 Here too, `python` or `pip` might be replaced with `py` or `python3` and `pip3` depending on the OS and installation configuration. If you have any issues with this, it is always helpful to consult 
@@ -40,7 +40,7 @@ Git is needed to install this repository. This is not completely necessary as yo
 After you have successfully installed Git, you can run the following command in a terminal / Command Prompt:
 
 ```bash
-$ git clone https://github.com/GitPoliceGroup/lib.git git-police
+git clone https://github.com/GitPoliceGroup/lib.git git-police
 ```
 
 This stores a copy in the folder `git-police`. You can then navigate into it using `cd git-police`.
@@ -58,13 +58,13 @@ Again, if you have any issues with `pip`, check out [here](#installing-from-pypi
 After this, you can use the following command to install this library:
 
 ```bash
-$ poetry install
+poetry install
 ```
 
 This script creates a virtual environment for you to work with this library.
 
 ```bash
-$ poetry shell
+poetry shell
 ```
 
 You can run the above script to enter a specialized shell to run commands within the virtual environment, including accessing the Python version with all the required dependencies to use git-police at its finest!
