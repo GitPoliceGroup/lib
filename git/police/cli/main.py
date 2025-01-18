@@ -11,7 +11,8 @@ app = typer.Typer()
 methods: dict[str, Rule] = {
     "haiku": check_haiku,
     "cc": check_cc,
-    "starwars": check_star_wars
+    "starwars": check_star_wars,
+    "palindrome": check_palindrome,
 }
 
 options = list(methods.keys())
@@ -61,7 +62,7 @@ def commit():
     print("Randomizing the rules to check for...")
     random.shuffle(options)
     
-    n_rules = random.randint(0, 3)
+    n_rules = random.randint(0, 4)
     print("Identifying", n_rules, "rules...")
     
     rules = [methods[method] for method in options[:n_rules]]
