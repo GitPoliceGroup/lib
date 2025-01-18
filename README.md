@@ -1,70 +1,29 @@
-# git.police
+# Python Package Template
 
-<!--
-[![PyPI Latest Release](https://img.shields.io/pypi/v/git-police.svg?logo=python&logoColor=white&color=blue)](https://pypi.org/project/git-police/)
-[![PyPI Downloads](https://static.pepy.tech/badge/git-police)](https://pepy.tech/project/git-police)
-[![GitHub Page Views Count](https://badges.toozhao.com/badges/01J0NWXGZ7XGDPFYWHZ9EX1F46/blue.svg)](https://github.com/GitPoliceGroup/lib)
-[![GitHub Release Date](https://img.shields.io/github/release-date/GitPoliceGroup/lib?logo=github&label=latest%20release&color=blue)](https://github.com/GitPoliceGroup/lib/releases/latest)
-[![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/GitPoliceGroup/lib/docs.yml?label=Docs%20CI&color=blue)](https://GitPoliceGroup.github.io/lib/)
--->
+This sample repo contains the recommended structure for a Python package.
 
-## 🛠️ Installation and Set-Up
+## Setup Instructions 
 
-<!--
-<h3>Installing from PyPI</h3>
+This sample makes use of Dev Containers, in order to leverage this setup, make sure you have [Docker installed](https://www.docker.com/products/docker-desktop).
 
-Yes, we have published git-police on PyPI! To install git-police and all its dependencies, the easiest method would be to use `pip` to query PyPI. This should, by default, be present in your Python installation. To, install run the following command in a terminal or Command Prompt / Powershell:
+The code in this repo aims to follow Python style guidelines as outlined in [PEP 8](https://peps.python.org/pep-0008/).
 
-```bash
-$ pip install git-police
-```
+To successfully run this example, we recommend the following VS Code extensions:
 
-Depending on the OS, you might need to use `pip3` instead. If the command is not found, you can choose to use the following command too:
+- [Dev Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
+- [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python)
+- [Python Debugger](https://marketplace.visualstudio.com/items?itemName=ms-python.debugpy)
+- [Pylance](https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance) 
 
-```bash
-python -m pip install git-police
-```
+In addition to these extension there a few settings that are also useful to enable. You can enable to following settings by opening the Settings editor (`Ctrl+,`) and searching for the following settings:
 
-Here too, `python` or `pip` might be replaced with `py` or `python3` and `pip3` depending on the OS and installation configuration. If you have any issues with this, it is always helpful to consult 
-[Stack Overflow](https://stackoverflow.com/).
--->
+- Python > Analysis > **Type Checking Mode** : `basic`
+- Python > Analysis > Inlay Hints: **Function Return Types** : `enable`
+- Python > Analysis > Inlay Hints: **Variable Types** : `enable`
 
-<h3>Installing from Source</h3>
-
-To install from source, you need to get the following:
-
-#### Git
-
-Git is needed to install this repository. This is not completely necessary as you can also install the zip file for this repository and store it on a local drive manually. To install Git, follow [this guide](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
-
-After you have successfully installed Git, you can run the following command in a terminal / Command Prompt:
-
-```bash
-git clone https://github.com/GitPoliceGroup/lib.git git-police
-```
-
-This stores a copy in the folder `git-police`. You can then navigate into it using `cd git-police`.
-
-#### Poetry
-
-This project can be used easily via a tool known as Poetry. This allows you to easily reflect edits made in the original source code! To install `poetry`, you can also install it using `pip` by typing in the command as follows:
-
-```bash
-pip install poetry
-```
-
-Again, if you have any issues with `pip`, check out [here](#installing-from-pypi).
-
-After this, you can use the following command to install this library:
-
-```bash
-poetry install
-```
-
-This script creates a virtual environment for you to work with this library.
-
-```bash
-poetry shell
-```
-
-You can run the above script to enter a specialized shell to run commands within the virtual environment, including accessing the Python version with all the required dependencies to use git-police at its finest!
+## Running the Sample
+- Open the template folder in VS Code (**File** > **Open Folder...**)
+- Open the Command Palette in VS Code (**View > Command Palette...**) and run the **Dev Container: Reopen in Container** command
+- Run the app using the Run and Debug view
+- To test, navigate to the Test Panel to configure your Python test or by triggering the **Python: Configure Tests** command from the Command Palette
+- Run tests in the Test Panel or by clicking the Play Button next to the individual tests in the `test_date_time.py` and `test_developer.py` file
