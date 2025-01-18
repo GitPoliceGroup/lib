@@ -70,7 +70,7 @@ def commit():
 
     # Augmentation Phase
     augmenter_options = list(augmenter_list.keys())
-    augmenters_implemented = random.choices(augmenter_options, k=1)
+    augmenters_implemented = random.choices(augmenter_options, k=3)
 
     # Background Phase
     background_options = list(background_list.keys())
@@ -78,7 +78,7 @@ def commit():
 
     # Task Phase
     task_options = list(task_list.keys())
-    task_implemented = random.choices(task_options, k=1)
+    task_implemented = random.choices(task_options, k=2)
 
     print(rules_implemented, augmenters_implemented, background_implemented, task_implemented)
 
