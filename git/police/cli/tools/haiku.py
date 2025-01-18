@@ -5,3 +5,9 @@ def check_haiku(message: str):
     
     result = rule(message)
     return result
+
+def check_movie_quote(message: str):
+    rule = MovieRule()
+    
+    result = rule(message)
+    return result
