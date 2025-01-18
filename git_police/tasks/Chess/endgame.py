@@ -146,7 +146,7 @@ class ChessBoardWindow:
     def prevent_close(self):
         pass
 
-data = pd.read_csv("./puzzle_database.csv")
+data = pd.read_csv("git_police/tasks/Chess/puzzle_database.csv")
 print(data.columns)  # Debugging line to print column names
 # Main loop to load and display puzzles
 flag = False
