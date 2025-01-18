@@ -12,6 +12,7 @@ ssl._create_default_https_context = ssl._create_unverified_context
 with open('/dev/null', 'w') as fnull:
     with redirect_stdout(fnull):
         nltk.download('cmudict', quiet=True)
+        nltk.download('wordnet')
 
 
 # Add all augmenters
