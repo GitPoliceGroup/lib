@@ -3,7 +3,7 @@ import re
 
 class AlternatorRule(Rule):
     def __init__(self):
-        super().__init__("HaikuChecker", "Commit Message should be with alternating uppercase and lowercase letters!")
+        super().__init__("AlternatorChecker", "Commit Message should be with alternating uppercase and lowercase letters!")
     
     def __call__(self, message: str) -> RuleOutput:
         message = re.sub(r'\s+', '', message)
