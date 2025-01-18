@@ -21,8 +21,11 @@ class Insultor(Task):
         self.scathing_comment_generator = ScathingCommentGenerator()
         
     def __call__(self):
+        time.sleep(2)
+        print("\nWe ran your code through our code review tool and found the following issues:")
         for i in range(10):
             time.sleep(2)
+            print()
             print(self.scathing_comment_generator.generate())
 
         return True

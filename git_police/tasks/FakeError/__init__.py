@@ -13,7 +13,7 @@ class FakeErrorGenerator:
             reader = csv.reader(f)
             comments = list(reader)
             random_comment = random.choice(comments)
-            return '\n'.join(random_comment) + "\n Are you sure you want to continue (Y/N): Y"
+            return '\n'.join(random_comment)
 
 class FakeError(Task):
     def __init__(self):
@@ -21,9 +21,15 @@ class FakeError(Task):
         self.generator = FakeErrorGenerator()
         
     def __call__(self):
+
+
         for i in range(10):
-            time.sleep(2)
+            time.sleep(4)
+            print()
             print(self.generator.generate())
+            print("Are you sure you want to continue (Y/N):")
+            time.sleep(1)
+            print("Y")
 
         return True
 

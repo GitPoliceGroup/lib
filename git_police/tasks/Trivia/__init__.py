@@ -122,21 +122,23 @@ class Trivia:
         for i in range(4):
             print(f"{i+1}. {qn_list[i]}")
 
-        while True:
-            try:
-                answer = int(input("Enter your answer (1-4): "))
-                if answer < 1 or answer > 4:
-                    print("Invalid input. Please enter a number between 1 and 4.")
-                else:
-                    if qn_list[answer - 1] == question["correct_answer"]:
-                        print("Correct!")
-                        break
-                    else:
-                        print(f"Incorrect.")
-            except ValueError:
-                print("Invalid input. Please enter a number between 1 and 4.")
 
-        return True
+        try:
+            answer = int(input("Enter your answer (1-4): "))
+            if answer < 1 or answer > 4:
+                print("Invalid input. Please enter a number between 1 and 4.")
+                return False
+            else:
+                if qn_list[answer - 1] == question["correct_answer"]:
+                    print("Correct!")
+                    return True
+                else:
+                    print(f"Incorrect.")
+                    return False
+        except ValueError:
+            print("Invalid input. Please enter a number between 1 and 4.")
+
+
 
 
 class TriviaGenerator(Task):

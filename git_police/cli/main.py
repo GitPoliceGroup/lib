@@ -109,7 +109,8 @@ def commit(
 
     # Skip_here added for testing purposes
 
-    skip_here = False
+    skip_here = True
+
     if(not skip_here):
         passed = False
         newmessage = ""
@@ -135,7 +136,7 @@ def commit(
 
         print("Congrats! You have passed this part")
 
-    skip_here = False
+    skip_here = True
                 
     if(not skip_here):
         # Running Augmentors
@@ -149,14 +150,18 @@ def commit(
             time.sleep(2)
 
 
+    skip_here = False
+    
+    if(not skip_here):
     # Running Tasks
-    for task in task_implemented:
-        print(f"\nRunning {task}...")
-        passed = task_list[task]()
-        while(not passed):
-            print("\nYou failed the task!")
+        for task in task_implemented:
+            # print(f"\nRunning {task}...") The task will handle its own printing
             passed = task_list[task]()
+            while(not passed):
+                print("\nYou failed the task!")
+                passed = task_list[task]()
 
+    print("\nYou have passed all the tests! You may now commit!\n")
     # Construct git commit command
     git_command = ["git", "commit"]
     if message:

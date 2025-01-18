@@ -14,7 +14,10 @@ class CodingTipGenerator(Task):
             return random_tip
         
     def __call__(self):
+        print("After analyzing your staged commits, here are coding tips:")
+
         for i in range(10):
+            print()
             time.sleep(2)
             print(self.generate())
 
