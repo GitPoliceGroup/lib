@@ -13,7 +13,8 @@ class GermanTranslator:
     def translate(self, english_text):
         try:
             input_ids = self.tokenizer.encode(english_text, return_tensors="pt")
-            output_ids = self.model.generate(input_ids)
+            with torch.no_grad():
+                output_ids = self.model.generate(input_ids)
             german_text = self.tokenizer.decode(output_ids[0], skip_special_tokens=True)
             return german_text
         except Exception as e:
