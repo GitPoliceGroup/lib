@@ -13,7 +13,12 @@ class ChessBoardWindow:
         self.flag = False
         self.data = data.sample().iloc[0]
         self.board = chess.Board(self.data["FEN"])
+        if "White" in self.data["Result"]:
+            self.board.turn = chess.WHITE
+        else:
+            self.board.turn = chess.BLACK
         self.moves = self.data["Moves"]
+        self.move_count = 0
         self.time_left = 90
         self.start_time = time.time()
         self.window = tk.Tk()
@@ -61,36 +66,54 @@ class ChessBoardWindow:
         return self.flag
     
     def update_board(self):
+        self.time_left = 90
         board_svg = chess.svg.board(self.board, coordinates=True)
         png_data = svg2png(bytestring=board_svg.encode('utf-8'))
         image_data = Image.open(io.BytesIO(png_data))
         self.board_photo = ImageTk.PhotoImage(image_data)
         self.board_image_label.config(image=self.board_photo)
+        self.move_count += 1
     
     def on_move_entered(self, event=None):
-        user_move = self.move_entry.get()
-        if user_move != "":
-            user_move = user_move.strip().lower().replace("/", " ").replace(";", " ").replace(",", " ")
-        else:
-            self.load_new_puzzle()
-        print("Input:", user_move)
-        correct_move = self.moves.lower()
-        print("Ans:", correct_move)
-        
-        if user_move == correct_move:
-            self.message_label.config(text="Correct move!", foreground="green")
-            self.status.config(text="Congratulations! You win! Exiting in 2 seconds...")
-            self.flag = True
-            self.window.after(2000, self.window.destroy)
-        else:
-            self.message_label.config(text="Incorrect move. Loading new puzzle...", foreground="red")
-            self.window.after(2000, self.load_new_puzzle)
+        try:
+            user_move = self.move_entry.get().strip().lower().replace("k", "K").replace("q", "Q").replace("r", "R").replace("n", "N").replace("b", "B")
+            correct_move = self.moves.split()[self.move_count]
+            
+            # Parse moves directly - special characters handled automatically
+            try:
+                if user_move == correct_move:
+                    self.board.push_san(user_move)
+                    self.message_label.config(text="Thinking...", foreground="green")
+                    self.board.push_san(self.moves.split()[self.move_count])
+                    # Update board after 2 second to give user feedback
+                    self.window.after(2000, self.update_board)
+                    if self.move_count >= 5:
+                        self.status.config(text="Congratulations! You win!")
+                        self.flag = True
+                        self.window.after(2000, self.window.destroy)
+                    else:
+                        self.message_label.config(text="Your Turn to Move", foreground="black")
+                else:
+                    self.message_label.config(text="Incorrect move. Loading new puzzle...", foreground="red")
+                    self.window.after(2000, self.load_new_puzzle)
+                    
+            except ValueError:
+                self.message_label.config(text="Invalid move format", foreground="red")
+                
+        except Exception as e:
+            self.message_label.config(text=f"Error: {str(e)}", foreground="red")
 
     
     def load_new_puzzle(self):
+        self.flag = False
         self.data = data.sample().iloc[0]
         self.board = chess.Board(self.data["FEN"])
+        if "White" in self.data["Result"]:
+            self.board.turn = chess.WHITE
+        else:
+            self.board.turn = chess.BLACK
         self.moves = self.data["Moves"]
+        self.move_count = 0
         self.time_left = 90
         self.start_time = time.time()
         print(self.moves)
@@ -98,7 +121,7 @@ class ChessBoardWindow:
         self.status.config(text=self.data["Result"])
         self.move_entry.config(state='normal')
         self.move_entry.delete(0, tk.END)
-        self.message_label.config(text="Enter move of both sides", foreground="black")
+        self.message_label.config(text="Your Turn to Move", foreground="black")
         self.start_time = time.time()
         self.window.after(100, self.start_timer)  # Delay timer start
     
@@ -120,11 +143,10 @@ class ChessBoardWindow:
     
     def prevent_close(self):
         pass
-"""
+
 data = pd.read_csv("./puzzle_database.csv")
 print(data.columns)  # Debugging line to print column names
 # Main loop to load and display puzzles
 flag = False
 while not(flag):
     flag = ChessBoardWindow(data)
-"""
