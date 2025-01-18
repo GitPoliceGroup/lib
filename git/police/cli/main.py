@@ -1,7 +1,7 @@
 import typer
 from git.police.rules import (
     Rule,
-    check_haiku, check_cc, check_star_wars
+    check_haiku, check_cc, check_star_wars, check_palindrome
 )
 from git.police.cli.utils.camera import start_camera
 import random
@@ -42,6 +42,15 @@ def cc():
 def starwars():
     message = input("Please enter your commit message: ")
     while not (output := check_star_wars(message)).success:
+        print("\n"+output.message)
+        message = input("Please enter a new commit message: ")
+    
+    print("\n\n"+output.message)
+
+@app.command()
+def palindrome():
+    message = input("Please enter your commit message: ")
+    while not (output := check_palindrome(message)).success:
         print("\n"+output.message)
         message = input("Please enter a new commit message: ")
     
