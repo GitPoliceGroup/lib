@@ -24,7 +24,7 @@ from git_police.rules import (
 
 rule_list = {
     "haiku" : check_haiku,
-    "conventional commits" : check_cc,
+    "cc" : check_cc,
     "starwars" : check_star_wars,
     "palindrome" : check_palindrome,
     "alternator" : check_alternator,
@@ -199,7 +199,6 @@ def commit(
         subprocess.run(git_command, check=True)
     except subprocess.CalledProcessError as e:
         print(f"Error running git commit: {e}")
-
 
     # Run the rules (Not edited)
     
