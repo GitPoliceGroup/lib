@@ -115,7 +115,7 @@ def commit():
 
 @app.command()
 def complain():
-    msg = input("input commit message:")
+    msg = "" #input("input commit message:")
     
     from git_police.repo import Repo
     
