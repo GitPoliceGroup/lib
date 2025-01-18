@@ -1,6 +1,7 @@
 import typer
-from git.police.cli.tools.haiku import check_haiku
-from git.police.cli.tools.conventional_commits import check_cc
+from git.police.rules import (
+    check_haiku, check_cc, check_movie_quote
+)
 from git.police.cli.utils.camera import start_camera
 
 app = typer.Typer()
@@ -19,7 +20,7 @@ def haiku():
     print("\n\n"+output.message)
 
 @app.command()
-def conventional_commits():
+def cc():
     message = input("Please enter your commit message: ")
     while not (output := check_cc(message)).success:
         print("\n"+output.message)
