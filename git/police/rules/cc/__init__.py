@@ -1,8 +1,7 @@
 from git.police.rules.core import Rule, RuleOutput
-from git.police.rules.haiku.haiku import *
 import re
 
-class CCRules(Rule):
+class CCRule(Rule):
     def validate_and_split_commit(self, message):
         pattern = r"^(?P<type>build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test|¯\\_\(ツ\)_\/¯)(?P<scope>\(\w+\))?(?P<breaking>!)?(?P<subject>:\s.*)?|^(?P<merge>Merge \w+)"
 
