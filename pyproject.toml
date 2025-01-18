@@ -1,12 +1,12 @@
 [tool.poetry]
-name = "walled-library"
+name = "git-police"
 version = "0.0.1"
-description = "An open-source toolkit to easily quantize your Huggingface Transformers."
+description = "Police your git commits."
 license = "MIT"
-authors = ["Prannaya Gupta <prannayagupta@programmer.net>", "Rishabh Bhardwaj"]
+authors = ["Prannaya Gupta <prannayagupta@programmer.net>"]
 readme = "README.md"
-repository = "https://github.com/walledai/walled-library"
-keywords = ["NLP", "deep learning", "transformer", "language model"]
+repository = "https://github.com/GitPoliceGroup/lib"
+keywords = ["git"]
 classifiers = [
     "Intended Audience :: Science/Research",
     "Topic :: Scientific/Engineering :: Artificial Intelligence",
@@ -16,15 +16,15 @@ classifiers = [
     "Programming Language :: Python",
 ]
 
+packages = [
+    {include = "git"}
+]
+
 [tool.poetry.urls]
-"Bug Tracker" = "https://github.com/walledai/walled-library/issues"
+"Bug Tracker" = "https://github.com/GitPoliceGroup/lib/issues"
 
 [tool.poetry.dependencies]
 python = "^3.10"
-transformers = "^4.40.1"
-accelerate = "^0.31.0"
-pyyaml = "^6.0"
-torch = "^2.3.0"
 
 [tool.poetry.group.dev.dependencies]  
 pytest = "^7.4"  
