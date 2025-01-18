@@ -4,8 +4,6 @@ class ScathingCommentGenerator:
     def __init__(self):
         self.file = "git/police/utils/scathing_code_reviews.csv"
 
-    
-
     def generate(self):
         with open(self.file, 'r') as f:
             reader = csv.reader(f)
