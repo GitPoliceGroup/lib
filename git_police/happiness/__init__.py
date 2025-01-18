@@ -1,3 +1,5 @@
+# git_police/happiness/__init__.py
+
 from git_police.rules.core import Rule, RuleOutput
 
 class HappinessRule(Rule):

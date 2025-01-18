@@ -3,6 +3,7 @@ from git_police.rules import (
     Rule,
     check_haiku, check_cc, check_star_wars, check_palindrome, check_alternator, check_piglatin, # check_happiness
 )
+from git_police.happiness import check_happiness
 from git_police.cli.utils.camera import start_camera
 import random, os
 
@@ -121,7 +122,7 @@ def complain():
     
     repo = Repo(os.getcwd())
     
-    from git_police.background.public_shaming import PublicShamingTask
+    from git_police.background.PublicShaming.public_shaming import PublicShamingTask
     task = PublicShamingTask()
     task(msg, repo.get_changes_as_text(), repo.get_diffs_as_text())
 

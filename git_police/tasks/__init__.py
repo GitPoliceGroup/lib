@@ -1,3 +1,5 @@
+# git_police/tasks/__init__.py
+
 from git_police.tasks.core import Task, TaskOutput
 
 from git_police.tasks.CodingTips import CodingTipGenerator
