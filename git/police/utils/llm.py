@@ -5,8 +5,9 @@ def ask_qwen(question):
     template = "{question}"
 
     prompt = ChatPromptTemplate.from_template(template)
-
-    model = OllamaLLM(model="qwen2:0.5b")
+    
+    # https://ollama.com/library/qwen2.5:0.5b
+    model = OllamaLLM(model="qwen2.5:0.5b")
 
     chain = prompt | model
 
@@ -17,6 +18,7 @@ def ask_qwen_coder(question):
 
     prompt = ChatPromptTemplate.from_template(template)
 
+    # https://ollama.com/library/qwen2.5-coder:0.5b
     model = OllamaLLM(model="qwen2.5-coder:0.5b")
 
     chain = prompt | model
