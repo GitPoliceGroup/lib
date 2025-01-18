@@ -89,6 +89,8 @@ class ChessBoardWindow:
                     self.board.push_san(self.moves.split()[self.move_count])
                     # Update board after 2 second to give user feedback
                     self.window.after(2000, self.update_board)
+                    # clear the entry
+                    self.move_entry.delete(0, tk.END)
                     if self.move_count >= 5:
                         self.status.config(text="Congratulations! You win!")
                         self.flag = True
@@ -146,7 +148,7 @@ class ChessBoardWindow:
     def prevent_close(self):
         pass
 
-data = pd.read_csv("git_police/tasks/Chess/puzzle_database.csv")
+data = pd.read_csv("./puzzle_database.csv")
 print(data.columns)  # Debugging line to print column names
 # Main loop to load and display puzzles
 flag = False
