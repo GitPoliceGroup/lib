@@ -27,6 +27,8 @@ packages = [
 python = "^3.10"
 typer = "^0.15.1"
 opencv-python = "^4.11.0.86"
+haikus = {git = "https://github.com/wieden-kennedy/haikus", develop = true}
+nltk = "^3.9.1"
 
 [tool.poetry.group.dev.dependencies]  
 pytest = "^7.4"  
