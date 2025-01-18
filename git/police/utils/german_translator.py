@@ -21,8 +21,6 @@ class GermanTranslator:
             print(f"Error in translation: {e}")
             return english_text
 
-
-
 # Example usage:
 if __name__ == "__main__":
     # Test the function with some examples

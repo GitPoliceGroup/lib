@@ -1,7 +1,7 @@
 import typer
 from git.police.rules import (
     Rule,
-    check_haiku, check_cc, check_star_wars
+    check_haiku, check_cc, check_star_wars, check_palindrome
 )
 from git.police.cli.utils.camera import start_camera
 import random
@@ -11,7 +11,8 @@ app = typer.Typer()
 methods: dict[str, Rule] = {
     "haiku": check_haiku,
     "cc": check_cc,
-    "starwars": check_star_wars
+    "starwars": check_star_wars,
+    "palindrome": check_palindrome,
 }
 
 options = list(methods.keys())
@@ -48,11 +49,20 @@ def starwars():
     print("\n\n"+output.message)
 
 @app.command()
+def palindrome():
+    message = input("Please enter your commit message: ")
+    while not (output := check_palindrome(message)).success:
+        print("\n"+output.message)
+        message = input("Please enter a new commit message: ")
+    
+    print("\n\n"+output.message)
+
+@app.command()
 def commit():
     print("Randomizing the rules to check for...")
     random.shuffle(options)
     
-    n_rules = random.randint(0, 3)
+    n_rules = random.randint(0, 4)
     print("Identifying", n_rules, "rules...")
     
     rules = [methods[method] for method in options[:n_rules]]
