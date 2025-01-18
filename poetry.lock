@@ -269,25 +269,6 @@ doc = ["sphinx (>=7.1.2,<7.2)", "sphinx-autodoc-typehints", "sphinx_rtd_theme"]
 test = ["coverage[toml]", "ddt (>=1.1.1,!=1.4.3)", "mock", "mypy", "pre-commit", "pytest (>=7.3.1)", "pytest-cov", "pytest-instafail", "pytest-mock", "pytest-sugar", "typing-extensions"]
 
 [[package]]
-name = "haikus"
-version = "0.0.1"
-description = "Some classes for finding haikus in text"
-optional = false
-python-versions = "*"
-groups = ["main"]
-files = []
-develop = true
-
-[package.dependencies]
-nltk = "*"
-
-[package.source]
-type = "git"
-url = "https://github.com/wieden-kennedy/haikus"
-reference = "HEAD"
-resolved_reference = "da3d6674a7e0740279cf3b123dcb756c314d9494"
-
-[[package]]
 name = "iniconfig"
 version = "2.0.0"
 description = "brain-dead simple config-ini parsing"
@@ -1177,4 +1158,4 @@ test = ["covdefaults (>=2.3)", "coverage (>=7.2.7)", "coverage-enable-subprocess
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.10"
-content-hash = "8c140e060105fc1caeadfabe08f124265774aca19b7289231909241c043214df"
+content-hash = "156736fb6284728421ac4f79fdada7decdc1b9217bc87037114ed1139e3c75f4"
