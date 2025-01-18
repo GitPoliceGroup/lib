@@ -40,6 +40,7 @@ tensorflow-io-gcs-filesystem = "0.31.0"
 langchain-ollama = "^0.2.2"
 tqdm = "^4.67.1"
 chess = "^1.11.1"
+cairosvg = "^2.7.1"
 
 [tool.poetry.group.dev.dependencies]  
 pytest = "^7.4"  

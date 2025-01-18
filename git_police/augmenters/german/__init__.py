@@ -10,5 +10,5 @@ class GermanAugmenter(Augmenter):
         
         self.translator = GermanTranslator()
     
-    def __call__(self, message: str) -> str:
+    def augment(self, message: str) -> str:
         return self.translator.translate(message)

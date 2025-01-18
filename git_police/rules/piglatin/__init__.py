@@ -19,6 +19,8 @@ class PigLatinRule(Rule):
     
     def is_pig_latin(self, word: str) -> bool:
         vowels = "aeiou"
-        if word[-2:] == "ay" and (word[:-2][0] in vowels or word[:-2][-1] in vowels):
-            return True
+        if len(word) > 2 and word[-2:] == "ay":
+            base_word = word[:-2]
+            if base_word and (base_word[0] in vowels or base_word[-1] in vowels):
+                return True
         return False
