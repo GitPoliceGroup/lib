@@ -1,0 +1,233 @@
+If your code doesn't work, make sure it's plugged in.
+Computers run on electricity.
+Syntax errors are usually caused by typos.
+Copy-pasting code can save time (but also introduce bugs).
+Comments are for explaining what the code does (or doesn't do).
+Indentation makes your code readable (or at least less unreadable).
+Variables store data (sometimes).
+Functions perform actions (sometimes predictably).
+Loops repeat code (until they don't).
+If you delete all your code, it will stop crashing.
+Turning it off and on again might help (or might not).
+Check if the power cord is plugged in (again).
+Coding requires a keyboard (usually).
+A monitor is useful for seeing your code.
+Coffee is a programmer's best friend (or worst enemy).
+Sleep is important (but often neglected).
+Debugging is the process of removing bugs (or introducing new ones).
+If you have a bug, try removing it.
+If you can’t remove a bug, try adding more code.
+Code compiles faster if you believe in it.
+Green text on a black background is classic (and sometimes hard to read).
+Code is made of characters.
+Computers only understand 0s and 1s (allegedly).
+The internet has answers (sometimes the wrong ones).
+Stack Overflow is your friend (and sometimes your enemy).
+Google is a search engine (and not a coding tutor).
+Reading the documentation can be helpful (but also boring).
+Testing your code is a good idea (sometimes).
+If your code works, don't touch it (unless you have to).
+If your code doesn't work, touch it a lot.
+The "any" key is a lie.
+Pressing the keys harder doesn't make the code run faster.
+If you type faster, you write more code.
+More code doesn't always mean better code.
+If you stare at the screen long enough, the bug might fix itself (it won't).
+Closing your eyes and wishing for it to work doesn’t help.
+Code is instructions for the computer (which it usually ignores).
+Errors are a part of the coding process (a big part).
+If you don't get errors, you're probably not coding.
+If you get too many errors, you are definitely coding.
+Copying from Stack Overflow without understanding is a bad idea (usually).
+Understanding the code is better than just copying it (sometimes).
+Writing your own code is the best way to learn (eventually).
+Learning to code takes time (a lot of time).
+Practice makes perfect (or at least better).
+Coding can be frustrating (very frustrating).
+Coding can also be rewarding (sometimes).
+Don't give up (unless you want to).
+If you give up, you won't be a coder.
+If you keep going, you might be a coder.
+If you write code, you are a coder.
+If you don't write code, you are not a coder.
+If you write bad code, you are still a coder.
+If you write good code, you are also still a coder.
+If you think about code, you are thinking about code.
+If you dream about code, you are probably a coder.
+If you talk about code, you are talking about code.
+If you breathe, you are alive.
+If you code, you are coding.
+If you don't code, you are not coding.
+The computer will do exactly what you tell it to do (even if you don't want it to).
+Computers are very literal.
+Computers don't have feelings.
+Computers don’t understand sarcasm.
+Computers are machines.
+Coding is a skill.
+Skills take time to develop.
+If you don't practice, you won't improve.
+If you practice, you might improve.
+If you practice a lot, you will probably improve.
+Coding is like riding a bike (except with more frustration).
+Once you learn to code, you won’t forget (maybe).
+Coding is like learning a new language.
+Coding is a form of communication (with computers).
+Computers are bad listeners.
+Computers only listen to code.
+Code is the language of computers.
+If you want to talk to a computer, you need to use code.
+If you don’t want to talk to a computer, don’t use code.
+If you use code, you are talking to a computer.
+If you don’t use code, you are not talking to a computer.
+If you think about talking to a computer, you are thinking about using code.
+If you dream about talking to a computer, you are probably dreaming about code.
+If you talk about talking to a computer, you are talking about code.
+If you breathe, you are breathing.
+If you code, you are coding.
+If you don’t code, you are not coding.
+Computers are fast (sometimes).
+Computers are slow (sometimes).
+It depends on the code.
+Good code runs faster.
+Bad code runs slower.
+If your code is slow, try making it better.
+If your code is fast, don't touch it.
+If you touch it, it might become slow.
+If you don't touch it, it might stay fast.
+If you think about touching it, you are thinking about potentially making it slow.
+If you dream about touching it, you are probably dreaming about making it slow.
+If you talk about touching it, you are talking about potentially making it slow.
+If you breathe, you are alive.
+If you code, you are coding.
+If you don’t code, you are not coding.
+The delete key deletes things.
+The backspace key also deletes things.
+Ctrl+Z undoes things.
+Ctrl+Y redoes things.
+Ctrl+C copies things.
+Ctrl+V pastes things.
+Ctrl+A selects everything.
+Ctrl+S saves things.
+If you don't save your work, you might lose it.
+Saving your work is a good idea.
+Not saving your work is a bad idea.
+If you think about saving your work, you are thinking about a good idea.
+If you dream about saving your work, you are probably dreaming about a good idea.
+If you talk about saving your work, you are talking about a good idea.
+If you breathe, you are alive.
+If you code, you are coding.
+If you don’t code, you are not coding.
+If you write code with a pen and paper, it won't run.
+You need a computer to run code.
+Computers need electricity to run.
+If there is no electricity, the computer won't run.
+If the computer doesn't run, the code won't run.
+If the code doesn't run, it won't do anything.
+If it doesn’t do anything, it’s not very useful.
+If it's not very useful, you probably shouldn't have written it.
+If you think about writing useless code, you are thinking about wasting time.
+If you dream about writing useless code, you are probably dreaming about wasting time.
+If you talk about writing useless code, you are talking about wasting time.
+If you breathe, you are alive.
+If you code, you are coding.
+If you don’t code, you are not coding. 
+Code will not run if you forget to write it.
+If your program does not start, check if you started it.
+A file that is not saved will disappear after you close it.
+If you delete a file, it will not come back.
+Variables need names or they do not exist.
+Code does not run faster if you yell at it.
+If you do not open your editor, you cannot code in it.
+Computers cannot read your mind.
+Every program begins as an empty file.
+If a feature is missing, you have to write it.
+Crashes happen when something breaks.
+Restarting solves some problems and causes others.
+You cannot compile code that has not been written.
+Functions that do nothing are called placeholders.
+Comments do not execute no matter how good they are.
+Code does not get better if you stare at it harder.
+A loop runs until it is told to stop.
+Infinite loops keep going forever unless they do not.
+A blank screen means nothing is showing.
+Errors happen when something goes wrong.
+Tests will not run if you do not run them.
+Blank output means your program is not producing anything.
+Code does not write itself unless it does.
+If you copy a bug, you will have two bugs.
+Dividing by zero does not end well.
+A frozen program is not moving.
+True and false are not the same thing.
+Your code will not compile if you forget something important.
+If your loop does not end, your program will not stop.
+Hello World is not a great first impression.
+Variables need to exist before you use them.
+Shortcuts only work if you press the keys.
+A file with no name is usually called Untitled.
+A blank screen means your program is not running.
+You cannot fix bugs that you do not look for.
+A syntax error means something is wrong.
+If you do not indent your code, it will look messy.
+Debuggers help find bugs if you let them.
+Programs only do what you tell them to do.
+Computers are not good at guessing what you meant.
+If your program crashes, it stopped working.
+Typing faster does not make your code better.
+The undo button is for mistakes you already made.
+Red text usually means something went wrong.
+If your code does not compile, check for typos.
+Saving your work means you will not lose it.
+Losing unsaved work is a lesson in saving.
+Pressing random keys will not fix your program.
+If your program is slow, it might need improvement.
+A missing semicolon is easy to find if you look hard enough.
+If your screen is black, check if your computer is on.
+Writing code on paper will not run it.
+A monitor helps you see what you are coding.
+If you do not test your code, it might not work.
+Functions only work when you call them.
+A loop that never runs will not repeat anything.
+Errors do not solve themselves.
+If your code does not run, check your spelling.
+Adding more code does not always solve problems.
+An unused variable is just taking up space.
+If your program has no output, it is not working.
+A file with no content is empty.
+Writing code is easier if you start writing.
+Turning off your computer will stop your code from running.
+Debugging is easier if you know where to look.
+Programs do not crash if you do not run them.
+Every project starts with an idea and ends with a bug.
+Typing does not create bugs, mistakes do.
+A broken feature is just a bug in disguise.
+If your code is not working, check what you wrote.
+Blank lines in your code do not run anything.
+A missing file cannot be found.
+Copying code from others does not make it yours.
+Errors are a sign something went wrong.
+Loops that do not end are usually infinite.
+A program that does not run cannot crash.
+Empty functions do not perform actions.
+A keyboard helps you type code.
+Computers do not understand human language.
+If your output is incorrect, check your input.
+A program without logic will not do anything logical.
+A bug is a mistake that lives in your code.
+Fixing one bug sometimes creates two more.
+If your code works, it is probably a fluke.
+A broken loop will not loop.
+Debugging is harder when you are tired.
+A program that runs perfectly does not exist.
+If your code is unreadable, it is probably bad.
+Comments that explain nothing are not helpful.
+An error message is there to help you.
+A missing feature cannot be used.
+Turning off your monitor does not fix your code.
+If your computer is not on, nothing will happen.
+A keyboard without keys will not type anything.
+Errors do not magically disappear.
+Restarting your program means running it again.
+If your loop stops too soon, check the condition.
+A program with no output is not very exciting.
+Broken code will not fix itself.
+If you add bugs, your program will have more bugs.
