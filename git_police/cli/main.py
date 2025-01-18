@@ -61,7 +61,9 @@ app = typer.Typer()
 @app.command()
 def commit():
 
-    print("Starting Commit")
+    # print("Starting Commit")
+
+    # Randomized Selector
     # Rule Phase, change k for number of rules to implement
     rule_options = list(rule_list.keys())
     rules_implemented = random.choices(rule_options, k=4)
@@ -81,7 +83,8 @@ def commit():
     print(rules_implemented, augmenters_implemented, background_implemented, task_implemented)
 
 
-    # Rudimentary manager + flow
+    # Rudimentary Executor
+    # Not sure how exactly we plan to implement this yet
     for background in background_implemented:
         background_list[background]()
 
