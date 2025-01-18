@@ -12,7 +12,10 @@ def hello(name: str):
 @app.command()
 def goodbye(name: str, formal: bool = False):
     commandgoodbye(name, formal)
-    
+
+@app.command()
+def start_cam():
+    start_camera()
 
 if __name__ == "__main__":
     app()
