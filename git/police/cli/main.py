@@ -1,6 +1,7 @@
 import typer
-from commands.hello import hello as commandhello
-from commands.goodbye import goodbye as commandgoodbye
+from git.police.cli.tools.hello import hello as commandhello
+from git.police.cli.tools.goodbye import goodbye as commandgoodbye
+
 
 app = typer.Typer()
 

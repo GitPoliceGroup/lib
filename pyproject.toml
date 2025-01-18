@@ -37,6 +37,9 @@ ruff = "*"
 isort = "*" 
 tox = "^4.15.0"
 
+[tool.poetry.scripts]
+git-police = "git.police.cli.main:app"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
