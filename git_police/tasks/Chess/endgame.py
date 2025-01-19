@@ -26,8 +26,9 @@ class ChessBoardWindow:
         self.window.title("Chess Puzzle")
         
         # Center the window on the screen
-        window_width = 500
-        window_height = 600
+        window_width = int(0.3 * self.window.winfo_screenwidth())
+        #60% of screen_height = 0.6*screen_height
+        window_height = int(0.6 * self.window.winfo_screenheight())
         screen_width = self.window.winfo_screenwidth()
         screen_height = self.window.winfo_screenheight()
         position_top = 0
