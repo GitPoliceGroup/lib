@@ -9,9 +9,11 @@ from PIL import Image, ImageTk
 import time
 
 class ChessBoardWindow:
-    def __init__(self, data):
+    def __init__(self, db_path):
+        self.master_data = pd.read_csv(db_path)
+        print('\n Now its time to test your reasoning and planning skills. Muhahahaha >:)')
         self.flag = False
-        self.data = data.sample().iloc[0]
+        self.data = self.master_data.sample().iloc[0]
         self.board = chess.Board(self.data["FEN"])
         if "White" in self.data["Result"]:
             self.board.turn = chess.WHITE
@@ -42,7 +44,8 @@ class ChessBoardWindow:
         self.timer_label.pack(side=tk.TOP, padx=10)
         
         self.board_image_label = ttk.Label(self.window)
-        self.board_image_label.pack(padx=10, pady=10)
+        # relative size to window size
+        self.board_image_label.pack(pady=1, padx=1)
         
         self.status = ttk.Label(self.window, text=self.data["Result"], font=("Helvetica", 14))
         self.status.pack(pady=5)
@@ -53,7 +56,7 @@ class ChessBoardWindow:
         self.move_entry = ttk.Entry(self.move_frame, font=("Helvetica", 14), width=20)
         self.move_entry.pack(side=tk.LEFT, padx=5)
         self.move_entry.bind('<Return>', self.on_move_entered)
-        
+
         self.submit_button = ttk.Button(self.move_frame, text="Submit", command=self.on_move_entered)
         self.submit_button.pack(side=tk.LEFT, padx=5)
         
@@ -64,8 +67,6 @@ class ChessBoardWindow:
         self.window.after(100, self.start_timer)  # Delay timer start
         self.window.protocol("WM_DELETE_WINDOW", self.prevent_close)
         self.window.mainloop()
-
-        return self.flag
     
     def update_board(self):
         self.time_left = 90
@@ -81,38 +82,49 @@ class ChessBoardWindow:
             user_move = self.move_entry.get().strip().lower().replace("k", "K").replace("q", "Q").replace("r", "R").replace("n", "N").replace("b", "B")
             print("User move", user_move)
             self.move_entry.delete(0, tk.END)
+            self.move_entry.config(state='disabled')
             self.message_label.config(text="Thinking...", foreground="green")
-            correct_move = self.moves.split()[self.move_count-1].Capitalise()
+            # update window to show message
+            self.window.update()
+            self.window.after(2000)
+            correct_move = self.moves.split()[self.move_count-1].replace("k", "K").replace("q", "Q").replace("r", "R").replace("n", "N").replace("b", "B")
             print("Correct move", correct_move)
             # Parse moves directly - special characters handled automatically
-            try:
-                if user_move == correct_move:
-                    self.board.push_san(user_move)
-                    self.update_board()
-                    self.board.push_san(self.moves.split()[self.move_count])
+            #try:
+            if user_move == correct_move:
+                self.board.push_san(user_move)
+                self.update_board()
+                if self.move_count >= 5:
+                    self.status.config(text="Congratulations! You win!")
+                    self.window.update()
+                    self.flag = True
+                    self.window.after(2000, self.window.destroy)
+                else:
+                    # computer move
+                    self.board.push_san(self.moves.split()[self.move_count-1])
                     # Update board after 2 second to give user feedback
                     self.window.after(2000, self.update_board)
-                    if self.move_count >= 5:
-                        self.status.config(text="Congratulations! You win!")
-                        self.flag = True
-                        self.window.after(2000, self.window.destroy)
-                    else:
-                        self.message_label.config(text="Your Turn to Move", foreground="black")
-                else:
-                    self.message_label.config(text="Incorrect move. Loading new puzzle...", foreground="red")
-                    self.window.after(2000, self.load_new_puzzle)
-                    
-            except ValueError:
-                self.message_label.config(text="Invalid move format", foreground="red")
+                    self.move_entry.config(state='normal')
+                    self.message_label.config(text="Your Turn to Move", foreground="black")
+                    self.window.update()
+
+            else:
+                self.message_label.config(text="Incorrect move. Loading new puzzle...", foreground="red")
                 self.window.after(2000, self.load_new_puzzle)
+                    
+        except ValueError:
+            self.message_label.config(text="Illegal move detected", foreground="red")
+            self.window.after(2000, self.load_new_puzzle)
+            self.window.update()
 
         except Exception as e:
             self.message_label.config(text=f"Error: {str(e)}", foreground="red")
+            #self.window.after(2000, self.load_new_puzzle)
 
     
     def load_new_puzzle(self):
         self.flag = False
-        self.data = data.sample().iloc[0]
+        self.data = self.master_data.sample().iloc[0]
         self.board = chess.Board(self.data["FEN"])
         if "White" in self.data["Result"]:
             self.board.turn = chess.WHITE
@@ -130,6 +142,7 @@ class ChessBoardWindow:
         self.message_label.config(text="Your Turn to Move", foreground="black")
         self.start_time = time.time()
         self.window.after(100, self.start_timer)  # Delay timer start
+        self.window.update()
     
     def start_timer(self):
         self.start_time = time.time()
@@ -154,7 +167,5 @@ class ChessBoardWindow:
 data = pd.read_csv("./puzzle_database.csv")
 print(data.columns)  # Debugging line to print column names
 # Main loop to load and display puzzles
-flag = False
-while not(flag):
-    flag = ChessBoardWindow(data)
+flag = ChessBoardWindow(data)
 """

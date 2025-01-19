@@ -1,5 +1,7 @@
 from git_police.background.core import BackgroundTask
 from git_police.utils.llm import ask_qwen, ask_qwen_coder
+from git_police.utils.telegram_bot import send_telegram_message
+import subprocess
 
 class PublicShamingTask(BackgroundTask):
     template = """
@@ -21,20 +23,25 @@ class PublicShamingTask(BackgroundTask):
     
     {diffs}
     
-    Insult begins here: <begin_insult>
+    If there is no context, just generate a random insult on the code! Please generate only the insult
     """
     
     def __init__(self):
         super().__init__("Public Shaming", "Shame the user for their bad code")
 
-    def __call__(self, msg, codebase, diffs):
-        print("Codebase")
-        print(codebase)
-        print()
-        print("Diffs")
-        print(diffs)
-        print()
+    def __call__(self, msg = "", codebase = "", diffs = ""):
+        try:
+            res = subprocess.run(["git", "config", "user.name"], stdout=subprocess.PIPE)
+            username = res.stdout.strip().decode()
+        except:
+            username = "Anonymous"
+
+        print("Commencing Public Shaming...")
         inp = self.template.format(codebase=codebase, diffs=diffs).strip()
-        print(ask_qwen(inp))
-        
-        
+        reply = ask_qwen(inp)
+
+        # start = reply.find("<begin_insult>")
+        # end = reply.find("</begin_insult>")
+        # reply = reply[start+len("<begin_insult>"):end]
+
+        send_telegram_message(f"Hey {username}! We analyzed your code\n" + reply)

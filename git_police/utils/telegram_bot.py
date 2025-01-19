@@ -3,6 +3,7 @@ import os
 import asyncio
 from dotenv import load_dotenv
 
+
 # You can just import tg_post_bot and run send_message
 # This will be executed in the background asynchronously, if all other programs end, the background task will persist till completion
 
@@ -25,6 +26,9 @@ class Telegram_Broadcaster:
         asyncio.run(self.broadcast_message_asynchronously(message))
 
 tg_post_bot = Telegram_Broadcaster() 
+
+def send_telegram_message(message):
+    tg_post_bot.send_message(message)
 
 # if __name__ == "__main__":
 #     tg_post_bot.send_message("Test")
