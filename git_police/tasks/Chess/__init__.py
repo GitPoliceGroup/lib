@@ -12,7 +12,7 @@ class ChessPuzzleTask(Task):
 
     def __call__(self):
         ChessBoardWindow(self.data)
-        return
+        return True
 
 if __name__ == "__main__":
     print("Running ChessPuzzleTask...")
