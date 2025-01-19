@@ -86,6 +86,7 @@ class ChessBoardWindow:
                 if user_move == correct_move:
                     self.board.push_san(user_move)
                     self.message_label.config(text="Thinking...", foreground="green")
+                    self.update_board()
                     self.board.push_san(self.moves.split()[self.move_count])
                     # Update board after 2 second to give user feedback
                     self.window.after(2000, self.update_board)
@@ -148,9 +149,11 @@ class ChessBoardWindow:
     def prevent_close(self):
         pass
 
+"""
 data = pd.read_csv("./puzzle_database.csv")
 print(data.columns)  # Debugging line to print column names
 # Main loop to load and display puzzles
 flag = False
 while not(flag):
     flag = ChessBoardWindow(data)
+"""
