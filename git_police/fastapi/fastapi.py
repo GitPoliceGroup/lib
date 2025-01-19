@@ -10,12 +10,12 @@ from git_police.happiness import HappinessChecker
 from pydantic import BaseModel
 import nltk
 from contextlib import redirect_stdout
-import ssl
+import ssl, os
 
 ssl._create_default_https_context = ssl._create_unverified_context
 
 # Suppress nltk.download output
-with open('/dev/null', 'w') as fnull:
+with open(os.devnull, 'w') as fnull:
     with redirect_stdout(fnull):
         nltk.download('cmudict', quiet=True)
         nltk.download('wordnet')
