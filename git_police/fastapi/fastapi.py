@@ -51,10 +51,11 @@ def random_n_rules() -> list[str]:
 
 @app.get("/check_rule")
 def check_rule(rule: str, message: str) -> APIOutput:
+    print(rule)
     if rule not in rule_list:
-        return BaseModel(**{"success": False, "message": "Rule not found"})
+        return APIOutput(**{"success": False, "message": "Rule not found"})
     result = rule_list[rule](message)
-    return BaseModel({
+    return APIOutput({
         "success": result.success,
         "message": result.message
     })
