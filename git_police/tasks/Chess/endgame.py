@@ -79,19 +79,18 @@ class ChessBoardWindow:
         try:
             user_move = self.move_entry.get().strip().lower().replace("k", "K").replace("q", "Q").replace("r", "R").replace("n", "N").replace("b", "B")
             print("User move", user_move)
+            self.move_entry.delete(0, tk.END)
+            self.message_label.config(text="Thinking...", foreground="green")
             correct_move = self.moves.split()[self.move_count-1]
             print("Correct move", correct_move)
             # Parse moves directly - special characters handled automatically
             try:
                 if user_move == correct_move:
                     self.board.push_san(user_move)
-                    self.message_label.config(text="Thinking...", foreground="green")
                     self.update_board()
                     self.board.push_san(self.moves.split()[self.move_count])
                     # Update board after 2 second to give user feedback
                     self.window.after(2000, self.update_board)
-                    # clear the entry
-                    self.move_entry.delete(0, tk.END)
                     if self.move_count >= 5:
                         self.status.config(text="Congratulations! You win!")
                         self.flag = True
@@ -149,11 +148,10 @@ class ChessBoardWindow:
     def prevent_close(self):
         pass
 
-"""
+
 data = pd.read_csv("./puzzle_database.csv")
 print(data.columns)  # Debugging line to print column names
 # Main loop to load and display puzzles
 flag = False
 while not(flag):
     flag = ChessBoardWindow(data)
-"""
