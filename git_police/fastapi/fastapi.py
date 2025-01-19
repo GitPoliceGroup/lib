@@ -67,7 +67,7 @@ def check_rule(rule: str, message: str) -> APIOutput:
     if rule not in rule_list:
         return APIOutput(**{"success": False, "message": "Rule not found"})
     result = rule_list[rule](message)
-    return APIOutput({
+    return APIOutput(**{
         "success": result.success,
         "message": result.message
     })
