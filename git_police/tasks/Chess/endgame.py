@@ -9,7 +9,8 @@ from PIL import Image, ImageTk
 import time
 
 class ChessBoardWindow:
-    def __init__(self, data):
+    def __init__(self, db_path):
+        data = pd.read_csv(db_path)
         print('\n Now its time to test your reasoning and planning skills. Muhahahaha >:)')
         self.flag = False
         self.data = data.sample().iloc[0]
