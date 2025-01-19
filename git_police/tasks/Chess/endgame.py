@@ -42,7 +42,8 @@ class ChessBoardWindow:
         self.timer_label.pack(side=tk.TOP, padx=10)
         
         self.board_image_label = ttk.Label(self.window)
-        self.board_image_label.pack(padx=10, pady=10)
+        self.board_image_label.pack(pady=window_width*0.85, padx=window_width*0.85)
+
         
         self.status = ttk.Label(self.window, text=self.data["Result"], font=("Helvetica", 14))
         self.status.pack(pady=5)
@@ -82,7 +83,7 @@ class ChessBoardWindow:
             print("User move", user_move)
             self.move_entry.delete(0, tk.END)
             self.message_label.config(text="Thinking...", foreground="green")
-            correct_move = self.moves.split()[self.move_count-1].Capitalise()
+            correct_move = self.moves.split()[self.move_count-1].replace("k", "K").replace("q", "Q").replace("r", "R").replace("n", "N").replace("b", "B")
             print("Correct move", correct_move)
             # Parse moves directly - special characters handled automatically
             try:
