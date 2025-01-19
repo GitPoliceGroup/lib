@@ -4,12 +4,13 @@ import ssl
 import subprocess
 import time
 import sys
+import os
 from contextlib import redirect_stdout
 
 ssl._create_default_https_context = ssl._create_unverified_context
 
 # Suppress nltk.download output
-with open('/dev/null', 'w') as fnull:
+with open(os.devnull, 'w') as fnull:
     with redirect_stdout(fnull):
         nltk.download('cmudict', quiet=True)
         nltk.download('wordnet')
