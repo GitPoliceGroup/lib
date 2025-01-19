@@ -104,7 +104,7 @@ def commit(
 
     # Commit Message Loop
     for background in background_implemented:
-        background_list[background]()
+        background_list[background]()()
 
     # Commit Message Rule Loop
     # The external while loop is to enforce that they pass all test cases, else they go all the way back! :>
