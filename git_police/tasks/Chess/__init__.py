@@ -11,7 +11,7 @@ class ChessPuzzleTask(Task):
         self.data = pd.read_csv("git_police/tasks/Chess/puzzle_database.csv")
 
     def __call__(self):
-        While True:
+        while True:
             try:
                 ChessBoardWindow(self.data)
                 return True

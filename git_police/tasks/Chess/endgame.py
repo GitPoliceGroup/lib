@@ -10,7 +10,7 @@ import time
 
 class ChessBoardWindow:
     def __init__(self, data):
-        print('\n Now its time to test your reasoning and planning skills. Muhahahaha >:)")
+        print('\n Now its time to test your reasoning and planning skills. Muhahahaha >:)')
         self.flag = False
         self.data = data.sample().iloc[0]
         self.board = chess.Board(self.data["FEN"])
