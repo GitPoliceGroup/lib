@@ -8,15 +8,12 @@ from git_police.tasks.core import Task, TaskOutput
 
 class ChessPuzzleTask(Task):
     def __init__(self):
-        self.data = pd.read_csv("git_police/tasks/Chess/puzzle_database.csv")
+        self.db_path = "git_police/tasks/Chess/puzzle_database.csv"
 
     def __call__(self):
-        while True:
-            try:
-                ChessBoardWindow(self.data)
-                return True
-            except:
-                continue
+        ChessBoardWindow(self.db_path)
+        return True
+
 
 if __name__ == "__main__":
     print("Running ChessPuzzleTask...")
