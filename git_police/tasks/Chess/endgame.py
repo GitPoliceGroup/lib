@@ -8,6 +8,8 @@ from cairosvg import svg2png
 from PIL import Image, ImageTk
 import time
 
+data = pd.read_csv('git_police/tasks/Chess/puzzle_database.csv')
+
 class ChessBoardWindow:
     def __init__(self, db_path):
         data = pd.read_csv(db_path)
@@ -120,21 +122,21 @@ class ChessBoardWindow:
         except Exception as e:
             self.message_label.config(text=f"Error: {str(e)}", foreground="red")
             #self.window.after(2000, self.load_new_puzzle)
-
-    
-    def load_new_puzzle(self):
-        self.flag = False
-        self.data = data.sample().iloc[0]
-        self.board = chess.Board(self.data["FEN"])
-        if "White" in self.data["Result"]:
-            self.board.turn = chess.WHITE
-        else:
-            self.board.turn = chess.BLACK
-        self.moves = self.data["Moves"]
-        print(self.moves)
-        self.move_count = 0
-        self.time_left = 90
         self.start_time = time.time()
+        self.time_left = 90
+        self.update_timer()
+    
+    def update_timer(self):
+        elapsed_time = int(time.time() - self.start_time)
+        self.time_left = max(90 - elapsed_time, 0)
+        self.timer_label.config(text=f"Time left: {self.time_left}")
+        
+        if self.time_left > 0:
+            self.window.after(1000, self.update_timer)
+        else:
+            self.message_label.config(text="Time's up! Loading new puzzle...", foreground="red")
+            self.window.after(2000, self.load_new_puzzle)
+    
         self.update_board()
         self.status.config(text=self.data["Result"])
         self.move_entry.config(state='normal')
