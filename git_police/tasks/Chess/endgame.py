@@ -81,7 +81,7 @@ class ChessBoardWindow:
             print("User move", user_move)
             self.move_entry.delete(0, tk.END)
             self.message_label.config(text="Thinking...", foreground="green")
-            correct_move = self.moves.split()[self.move_count-1]
+            correct_move = self.moves.split()[self.move_count-1].Capitalise()
             print("Correct move", correct_move)
             # Parse moves directly - special characters handled automatically
             try:
@@ -103,7 +103,8 @@ class ChessBoardWindow:
                     
             except ValueError:
                 self.message_label.config(text="Invalid move format", foreground="red")
-                
+                self.window.after(2000, self.load_new_puzzle)
+
         except Exception as e:
             self.message_label.config(text=f"Error: {str(e)}", foreground="red")
 
@@ -148,10 +149,11 @@ class ChessBoardWindow:
     def prevent_close(self):
         pass
 
-
+"""
 data = pd.read_csv("./puzzle_database.csv")
 print(data.columns)  # Debugging line to print column names
 # Main loop to load and display puzzles
 flag = False
 while not(flag):
     flag = ChessBoardWindow(data)
+"""
