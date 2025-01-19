@@ -42,8 +42,8 @@ class ChessBoardWindow:
         self.timer_label.pack(side=tk.TOP, padx=10)
         
         self.board_image_label = ttk.Label(self.window)
-        self.board_image_label.pack(pady=0.85, padx=0.85)
-
+        # relative size to window size
+        self.board_image_label.pack(pady=1, padx=1)
         
         self.status = ttk.Label(self.window, text=self.data["Result"], font=("Helvetica", 14))
         self.status.pack(pady=5)
@@ -83,29 +83,33 @@ class ChessBoardWindow:
             print("User move", user_move)
             self.move_entry.delete(0, tk.END)
             self.message_label.config(text="Thinking...", foreground="green")
-            correct_move = self.moves.split()[self.move_count-1].replace("k", "K").replace("q", "Q").replace("r", "R").replace("n", "N").replace("b", "B")
+            # wait for 2 second
+            self.window.after(2000)
+            correct_move = self.moves.split()[self.move_count-1]#.replace("k", "K").replace("q", "Q").replace("r", "R").replace("n", "N").replace("b", "B")
             print("Correct move", correct_move)
             # Parse moves directly - special characters handled automatically
-            try:
-                if user_move == correct_move:
-                    self.board.push_san(user_move)
-                    self.update_board()
-                    self.board.push_san(self.moves.split()[self.move_count])
-                    # Update board after 2 second to give user feedback
-                    self.window.after(2000, self.update_board)
-                    if self.move_count >= 5:
-                        self.status.config(text="Congratulations! You win!")
-                        self.flag = True
-                        self.window.after(2000, self.window.destroy)
-                    else:
-                        self.message_label.config(text="Your Turn to Move", foreground="black")
+            #try:
+            if user_move == correct_move:
+                self.board.push_san(user_move)
+                self.update_board()
+                if self.move_count >= 5:
+                    self.status.config(text="Congratulations! You win!")
+                    self.flag = True
+                    self.window.after(2000, self.window.destroy)
+                    return
                 else:
-                    self.message_label.config(text="Incorrect move. Loading new puzzle...", foreground="red")
-                    self.window.after(2000, self.load_new_puzzle)
-                    
-            except ValueError:
-                self.message_label.config(text="Invalid move format", foreground="red")
+                    self.message_label.config(text="Your Turn to Move", foreground="black")
+                # computer move
+                self.board.push_san(self.moves.split()[self.move_count-1])
+                # Update board after 2 second to give user feedback
+                self.window.after(2000, self.update_board)
+
+            else:
+                self.message_label.config(text="Incorrect move. Loading new puzzle...", foreground="red")
                 self.window.after(2000, self.load_new_puzzle)
+                    
+            #except ValueError:
+            #    self.message_label.config(text="Invalid move format", foreground="red")
 
         except Exception as e:
             self.message_label.config(text=f"Error: {str(e)}", foreground="red")
