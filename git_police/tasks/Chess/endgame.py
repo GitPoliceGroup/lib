@@ -42,7 +42,7 @@ class ChessBoardWindow:
         self.timer_label.pack(side=tk.TOP, padx=10)
         
         self.board_image_label = ttk.Label(self.window)
-        self.board_image_label.pack(pady=window_width*0.85, padx=window_width*0.85)
+        self.board_image_label.pack(pady=0.85, padx=0.85)
 
         
         self.status = ttk.Label(self.window, text=self.data["Result"], font=("Helvetica", 14))
