@@ -110,12 +110,14 @@ class ChessBoardWindow:
                 self.message_label.config(text="Incorrect move. Loading new puzzle...", foreground="red")
                 self.window.after(2000, self.load_new_puzzle)
                     
-            #except ValueError:
-            #    self.message_label.config(text="Invalid move format", foreground="red")
+        except ValueError:
+            self.message_label.config(text="Illegal move detected", foreground="red")
+            self.window.after(2000, self.load_new_puzzle)
+            self.window.update()
 
         except Exception as e:
             self.message_label.config(text=f"Error: {str(e)}", foreground="red")
-            self.window.after(2000, self.load_new_puzzle)
+            #self.window.after(2000, self.load_new_puzzle)
 
     
     def load_new_puzzle(self):
@@ -159,8 +161,9 @@ class ChessBoardWindow:
     def prevent_close(self):
         pass
 
-
+"""
 data = pd.read_csv("./puzzle_database.csv")
 print(data.columns)  # Debugging line to print column names
 # Main loop to load and display puzzles
 flag = ChessBoardWindow(data)
+"""
