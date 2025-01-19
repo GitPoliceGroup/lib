@@ -26,8 +26,9 @@ class ChessBoardWindow:
         self.window.title("Chess Puzzle")
         
         # Center the window on the screen
-        window_width = 500
-        window_height = 600
+        window_width = int(0.3 * self.window.winfo_screenwidth())
+        #60% of screen_height = 0.6*screen_height
+        window_height = int(0.6 * self.window.winfo_screenheight())
         screen_width = self.window.winfo_screenwidth()
         screen_height = self.window.winfo_screenheight()
         position_top = 0
@@ -79,19 +80,18 @@ class ChessBoardWindow:
         try:
             user_move = self.move_entry.get().strip().lower().replace("k", "K").replace("q", "Q").replace("r", "R").replace("n", "N").replace("b", "B")
             print("User move", user_move)
-            correct_move = self.moves.split()[self.move_count-1]
+            self.move_entry.delete(0, tk.END)
+            self.message_label.config(text="Thinking...", foreground="green")
+            correct_move = self.moves.split()[self.move_count-1].Capitalise()
             print("Correct move", correct_move)
             # Parse moves directly - special characters handled automatically
             try:
                 if user_move == correct_move:
                     self.board.push_san(user_move)
-                    self.message_label.config(text="Thinking...", foreground="green")
                     self.update_board()
                     self.board.push_san(self.moves.split()[self.move_count])
                     # Update board after 2 second to give user feedback
                     self.window.after(2000, self.update_board)
-                    # clear the entry
-                    self.move_entry.delete(0, tk.END)
                     if self.move_count >= 5:
                         self.status.config(text="Congratulations! You win!")
                         self.flag = True
@@ -104,7 +104,8 @@ class ChessBoardWindow:
                     
             except ValueError:
                 self.message_label.config(text="Invalid move format", foreground="red")
-                
+                self.window.after(2000, self.load_new_puzzle)
+
         except Exception as e:
             self.message_label.config(text=f"Error: {str(e)}", foreground="red")
 
