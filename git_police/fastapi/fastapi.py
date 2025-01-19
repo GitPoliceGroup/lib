@@ -8,6 +8,18 @@ from git_police.tasks import (coding_tips, insultor, fake_error, trivia_generato
 from git_police.augmenters import (AntonymAugmenter, DrunkTypingAugmenter, GermanAugmenter, PirateAugmenter, YodaSpeakAugmenter)
 from git_police.happiness import HappinessChecker
 from pydantic import BaseModel
+import nltk
+from contextlib import redirect_stdout
+import ssl
+
+ssl._create_default_https_context = ssl._create_unverified_context
+
+# Suppress nltk.download output
+with open('/dev/null', 'w') as fnull:
+    with redirect_stdout(fnull):
+        nltk.download('cmudict', quiet=True)
+        nltk.download('wordnet')
+
 
 rule_list = {
     "haiku": check_haiku,
